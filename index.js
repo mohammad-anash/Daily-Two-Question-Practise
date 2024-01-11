@@ -826,12 +826,12 @@ function medianValue(string) {
 
 // ek function likho jiski bhi age even hu uss perone ka name console kro
 
-const person = [
-  { name: "anash", age: 33 },
-  { name: "john", age: 24 },
-  { name: "rohan", age: 57 },
-  { name: "Abbas", age: 86 },
-];
+// const person = [
+//   { name: "anash", age: 33 },
+//   { name: "john", age: 24 },
+//   { name: "rohan", age: 57 },
+//   { name: "Abbas", age: 86 },
+// ];
 function evenAges(person) {
   return person.reduce((prev, current) => {
     if (current.age % 2 == 0) {
@@ -891,3 +891,981 @@ function evenAges(person) {
 // }
 // console.log(capFirstLetter(person));
 
+// function PrimeNumber(n) {
+//   let store = [];
+
+//   for (let i = 2; i <= n; i++) {
+//     if (n % i == 0) {
+//       store.push(i);
+//     }
+//   }
+//   return store.length === 1 ? true : false;
+// }
+
+// console.log(PrimeNumber(17));
+
+// generate this type of patters with using nested loop
+
+// ==============
+// |            |
+// |            |
+// |            |
+// |            |
+// |            |
+// |            |
+// ==============
+
+// pending
+
+// function generatePatters() {
+//   let string = "";
+//   let newString = "";
+//   let endLine = "";
+//   for (let i = 0; i <= 10; i++) {
+//     for (let j = 0; j <= 10; j++) {
+//       string += "=";
+//       if (i === 0 || i === 10) {
+//         newString += "=";
+//       }
+//     }
+//     newString += "\n"
+//   }
+//   console.log(string, newString, endLine);
+// }
+
+// console.log(generatePatters());
+
+// generate in other way
+
+// function generatePattern() {
+//   const firstLine = "=".repeat(10);
+//   let string = "";
+//   for (let i = 0; i < 10; i++) {
+//     string += "|         |";
+//     string += "\n";
+//   }
+//   console.log(firstLine);
+//   console.log(string)
+//   console.log(firstLine);
+// }
+
+// console.log(generatePattern());
+
+// this one more patters
+
+// =================
+// +               &
+// +               &
+// +               &
+// +               &
+// +               &
+// +               &
+// +               &
+// +               &
+// *****************
+function boxPatterns() {
+  console.log("=".repeat(13));
+  let sidesLine = "";
+  for (let i = 0; i < 10; i++) {
+    sidesLine += "+           &";
+    sidesLine += "\n";
+  }
+  console.log(sidesLine + "*".repeat(13));
+}
+
+// console.log(boxPatterns());
+
+// generate left tranigle
+
+function leftTranigle() {
+  let string = "";
+  for (let i = 1; i <= 5; i++) {
+    for (let j = 1; j <= i; j++) {
+      string += "*";
+    }
+    string += "\n";
+  }
+  return string;
+}
+
+// console.log(leftTranigle())
+
+function downLeftTraingle() {
+  let string = "";
+
+  for (let i = 5; i >= 1; i--) {
+    for (let j = 1; j <= i; j++) {
+      string += "*";
+    }
+    string += "\n";
+  }
+  return string;
+}
+
+// console.log(downLeftTraingle());
+
+// write a function to check the given number is prime or mot
+
+// function primeNumber(n) {
+//   let store = [];
+
+//   for (let i = 2; i <= n; i++) {
+//     if (n % i == 0) {
+//       store.push(i);
+//     }
+//   }
+//   return store.length === 1 ? true : false;
+// }
+
+// console.log(primeNumber(17));
+
+// Everything about string
+
+// function EverythingAboutString(string) {
+//   // firstletter and Secondkletter of string
+
+//   const firstLetter = string.split("").shift();
+//   const lastLetter = string.split("").pop();
+
+//   // length of the string
+//   const length = string.length;
+//   let CharCounter = 0;
+//   let wordCounter = 1;
+
+//   // count words and charanters
+//   for (let i = 0; i < string.length; i++) {
+//     if (string[i] !== " ") {
+//       CharCounter++;
+//     } else {
+//       wordCounter++;
+//     }
+//   }
+
+//   // count vowel and consonant in the string
+//   let vowelCount = 0;
+//   let consonantCount = 0;
+//   const removeGaps = string.replaceAll(" ", "");
+//   for (let i = 0; i < removeGaps.length; i++) {
+//     if ("aeiou".includes(removeGaps[i])) {
+//       vowelCount++;
+//     } else {
+//       consonantCount++;
+//     }
+//   }
+
+//   // find the median in the string => median means the middle letter of words
+//   const stringInArray = string.replaceAll(" ", "").split("");
+//   const middleIndex = Math.floor(removeGaps.length / 2);
+
+//   const middleIndexStore = [];
+//   if (stringInArray.length % 2 != 0) {
+//     middleIndexStore.push(stringInArray[middleIndex]);
+//   } else {
+//     middleIndexStore.push(
+//       stringInArray.slice(middleIndex - 1, middleIndex + 1).join("")
+//     );
+//   }
+
+//   const aboutString = {
+//     length: length,
+//     character: CharCounter,
+//     Words: wordCounter,
+//     firstLetter: firstLetter,
+//     lastLetter: lastLetter,
+//     Vowels: vowelCount,
+//     Consonant: consonantCount,
+//     Median: middleIndexStore,
+//   };
+
+//   return aboutString
+// }
+
+// console.log(EverythingAboutString("this is the string"));
+// console.log(EverythingAboutString("filter"));
+
+// write a function to implement a function if person age is even then the return the perons name
+
+// const person = [
+//   { name: "anash", age: 80 },
+//   { name: "Cristopher", age: 56 },
+//   { name: "Abbas", age: 87 },
+//   { name: "kyle", age: 81 },
+// ];
+
+// const [a, ...rest] = person;
+// console.log(a)
+
+// function personName(user) {
+//   return user.filter((element) => element.age % 2 == 0);
+// }
+
+// console.log(personName(person));
+
+// rigth traingle angle
+
+// o create a right triangle pattern in javascript you will have to deal with 3 loops, 1 of which is external and 2 are internal. The external loop will execute internal loops for 'n' number of times and the internal loop will design a pattern for each row.
+
+// From the above pattern, you can see each row has a series of stars and spaces. The number of stars in a row starts from 1 preceding with 'n-1' spaces and ends with 'n' star and 0 spaces.
+
+// Create 2 internal loops, 1st print n - i spaces and 2nd print i stars, where i is the number of times the external loop is executed.
+
+// let string = "";
+
+// for (let i = 0; i <= 5; i++) {
+//   for (let j = 0; j < 5 - i; j++) {
+//     string += " ";
+//   }
+//   for (let k = 0; k < i; k++) {
+//     string += "*";
+//   }
+//   string += "\n";
+// }
+// console.log(string);
+
+// Write a function rotateArray(arr, k) that rotates the elements of an array to the right by k positions.
+
+function rotateArray(arr, n) {
+  for (let i = 0; i < n; i++) {
+    let getEndValue = arr.pop();
+    arr.unshift(getEndValue);
+  }
+  // return arr;
+}
+
+// Second Approch
+
+function rotateArray(arr, n) {
+  // const getEndValue = arr.slice(-n);
+  // console.log(getEndValue.concat(arr.slice(0, -n)));
+
+  // one more way
+  console.log(arr.slice(-n).concat(arr.slice(0, -n)));
+}
+
+// console.log(rotateArray([1, 2, 3, 4, 5], 2)); // Output: [4, 5, 1, 2, 3]
+
+// Write a function isPalindrome(str) that checks if a given string is a palindrome (reads the same backward as forward).
+
+function isPalindrome(string) {
+  return string === string.split("").reverse().join("")
+    ? "string is Palimdrom"
+    : "string not palimdrom";
+}
+
+// console.log(isPalindrome("civic")); // Output: true
+
+// Write a function generatePyramid(rows) that generates a pyramid pattern using asterisks.
+
+// pending
+
+//    *
+//   ***
+//  *****
+// *******
+function generatePyramid() {
+  let string = "";
+
+  for (let i = 0; i <= 5; i++) {
+    for (let j = 0; j < 5 - i; j++) {
+      string += " ";
+    }
+    for (let k = 0; k < 2 * i - 1; k++) {
+      string += "*";
+    }
+    string += "\n";
+  }
+  return string;
+}
+// console.log(generatePyramid());
+
+// Write a function uniqueInOrder(sequence) that takes a string or array and returns a list of items without any consecutive duplicates.
+
+function uniqueInOrder(string) {
+  let store = [];
+
+  for (let i = 0; i < string.length; i++) {
+    if (!store.includes(string[i])) {
+      store.push(string[i]);
+    }
+  }
+  // return store;
+}
+
+// Second Approch
+
+function uniqueInOrder(string) {
+  const removeDup = [...new Set(string)];
+  // return removeDup
+}
+
+// third Approch
+
+function uniqueInOrder(string) {
+  return string.split("").filter((element, index, array) => {
+    return array.indexOf(element) === index;
+  });
+}
+
+// console.log(uniqueInOrder("AAAABBBCCDAABBB")); // Output: ['A', 'B', 'C', 'D', 'A', 'B']
+
+// Write a function findSmallestCommonNumber(arr1, arr2, arr3) that finds the smallest common number among three sorted arrays.
+
+// function findSmallestCommonNumber(arr1, arr2, arr3) {
+//   const allInOne = [...arr1, ...arr2, ...arr3];
+//   let object = {};
+
+//   allInOne.forEach((element) => {
+//     if (object[element]) {
+//       object[element]++;
+//     } else {
+//       object[element] = 1;
+//     }
+//   });
+//   const ObjectValues = Object.values(object).find((char) => char > 1);
+
+//   for (const keys in object) {
+//     // console.log(object[keys], ObjectValues)
+//     if (object[keys] === ObjectValues) {
+//       console.log(`Lowest Common Number: ${+keys}`);
+//     }
+//   }
+// // }
+
+// function findSmallestCommonNumber(arr1, arr2, arr3) {
+//   const findCommonElement = [...arr1, ...arr2, ...arr3].filter(
+//     (current, index, array) => {
+//       const commonElements = array.indexOf(current) !== index;
+//       return commonElements;
+//     }
+//   );
+//   return `Smalles Common Element in the Array ${findCommonElement[0]}`;
+// }
+
+// console.log(
+//   findSmallestCommonNumber(
+//     [6, 7, 10, 25, 30, 63],
+//     [0, 4, 5, 6, 7, 8, 50],
+//     [1, 6, 10, 14]
+//   )
+// ); // Output: 6
+
+// print downWards Tranigle
+
+// function printTraingle() {
+//   let string = "";
+
+//   for (let i = 5; i >= 1; i--) {
+//     for (let j = 0; j < i; j++) {
+//       string += "*";
+//     }
+//     string += "\n";
+//   }
+//   return string;
+// }
+
+// console.log(printTraingle());
+
+// print upward Tranigle
+
+// function printTraingledownWards() {
+//   let string = "";
+
+//   for (let i = 1; i <= 5; i++) {
+//     for (let j = 0; j < i; j++) {
+//       string += "*";
+//     }
+//     string += "\n";
+//   }
+//   return string;
+// }
+
+// console.log(printTraingledownWards());
+
+// generate pattern like this
+
+// *******
+// *     *
+// *     *
+// *     *
+// *******
+
+// function boxPatterns() {
+//   let string = "";
+//   let newstring = "";
+//   for (let i = 0; i < 5; i++) {
+//     string += "*";
+//     newstring += "*      *\n";
+//   }
+//   console.log(string);
+//   console.log(newstring);
+//   console.log(string);
+// }
+
+// boxPatterns();
+
+// genrate rigth traingle
+
+// o create a right triangle pattern in javascript you will have to deal with 3 loops, 1 of which is external and 2 are internal. The external loop will execute internal loops for 'n' number of times and the internal loop will design a pattern for each row.
+
+// From the above pattern, you can see each row has a series of stars and spaces. The number of stars in a row starts from 1 preceding with 'n-1' spaces and ends with 'n' star and 0 spaces.
+
+// Create 2 internal loops, 1st print n - i spaces and 2nd print i stars, where i is the number of times the external loop is executed.
+
+// let string = "";
+
+// for (let i = 5; i >= 1; i--) {
+//   for (let k = 0; k < 5 - i; k++) {
+//     string += " ";
+//   }
+
+//   for (let j = 0; j < i; j++) {
+//     string += "*";
+//   }
+//   string += "\n";
+// }
+// console.log(string)
+
+//     *
+//    ***
+//   *****
+//  *******
+// *********
+
+// The Pyramid star pattern is a famous star pattern, you can see the shape of the pattern above.
+
+// It uses 2 loops inside the external loop one for printing spaces and the other to print stars.
+
+// The number of spaces in a row is n - i in each row and the number of stars in a row is 2 * i - 1.
+
+// function generatePyramid() {
+//   let string = "";
+
+//   for (let i = 1; i <= 5; i++) {
+//     for (let j = 0; j < 5 - i; j++) {
+//       string += " ";
+//     }
+//     for (let k = 0; k < 2 * i - 1; k++) {
+//       string += "*";
+//     }
+//     string += "\n";
+//   }
+//   return string;
+// }
+// console.log(generatePyramid());
+
+// write a left traingle of string like this
+
+// 1
+// 23
+// 456
+// 78910
+
+// function generateLeftTriangle() {
+//   let string = "12345678910";
+//   let newString = "";
+
+//   for (let i = 1; i <= 5; i++) {
+//     for (let j = 0; j < i; j++) {
+//       newString += string[j];
+//     }
+//     newString += "\n";
+//   }
+
+//   return newString;
+// }
+
+// console.log(generateLeftTriangle());
+
+// write a function to generate counting pattern like this
+
+// 1
+// 23
+// 456
+// 78910
+
+// function generatePattern(string) {
+//   let newString = "";
+
+//   const halfTimeOfString = Math.floor(string.length / 2);
+//   let startIndex = 0;
+
+//   for (let i = 1; i <= halfTimeOfString; i++) {
+//     let row = string.slice(startIndex, startIndex + i);
+//     newString += row + "\n";
+//     startIndex += i;
+//   }
+//   return newString
+// }
+// console.log(generatePattern("12345678910"));
+
+// now generate patters like this
+
+// 10789
+// 654
+// 32
+// 1
+
+// function generatePattern(string) {
+//   let newString = "";
+
+//   const halfTimeOfString = Math.floor(string.length / 2);
+
+//   let StartIndex = 15;
+//   for (let i = halfTimeOfString; i >= 1; i--) {
+//     let row = string.slice(StartIndex - i, StartIndex);
+//     newString += row + "\n";
+//     StartIndex -= i;
+//   }
+//   return newString
+// }
+
+// console.log(generatePattern("12345678910"));
+
+// generate Pattern Like this
+
+// 1111
+// 1111
+// 1111
+// 1111
+
+// function generatePattern() {
+//   let string = "";
+
+//   for (let i = 1; i < 5; i++) {
+//     for (let j = 1; j < 5; j++) {
+//       string += "1";
+//     }
+//     string += "\n";
+//   }
+//   return string
+// }
+
+// console.log(generatePattern());
+
+// Second Approch for the previous solution
+
+// function generatePattern(string) {
+//   let newString = "";
+//   let n = 4;
+
+//   for (let i = 5; i > 1; i--) {
+//     for (let j = 5; j > 1; j--) {
+//       newString += string.slice(0, i - n);
+//     }
+//     n--;
+//     newString += "\n";
+//   }
+//   return newString;
+// }
+
+// console.log(generatePattern("1234"));
+
+// generate pattern like this
+
+// function generatePattern(string) {
+//   let count = 0;
+
+//   if (count < 4) {
+//     count = 0;
+//   }
+
+//   let newString = "";
+//   for (let i = 1; i < 5; i++) {
+//     count++;
+//     for (let j = 1; j < 5; j++) {
+//       newString += count;
+//     }
+//     newString += "\n";
+//   }
+//   return newString;
+// }
+
+// console.log(generatePattern("1234"));
+
+// Second Approch
+
+// function generatPattern(string) {
+//   let n = 1;
+
+//   let newString = "";
+
+//   for (let i = 0; i < 4; i++) {
+//     for (let j = 1; j < 5; j++) {
+//       newString += string.slice(i, n);
+//     }
+//     n++;
+//     newString += "\n";
+//   }
+//   return newString;
+// }
+
+// console.log(generatPattern("1234"));
+
+// while loop practise
+
+// write a function to print count 1 to 10
+
+// let i = 1;
+// while (i <= 10) {
+//   console.log(i);
+//   i++;
+// }
+
+// write a function to calculate all number between 1 to 100 with using while loop
+
+// let sum = 0;
+// let i = 1;
+
+// while (i <= 100) {
+//   sum += i;
+//   i++;
+// }
+// console.log(sum);
+
+// Implement a program to calculate the factorial of a given number using a while loop.
+
+// let i = 5;
+// let product = 1;
+
+// while (i >= 1) {
+//   product *= i;
+//   i--;
+// }
+// console.log(product);
+
+// write a function to generate a fabonanci serires with using while loop
+
+// let arr = [0, 1];
+// let i = 1;
+// let num = 2;
+
+// while (i <= 5) {
+//   arr.push(arr[num - 2] + arr[num - 1]);
+//   i++
+//   num++;
+// }
+
+// console.log(arr);
+
+// Create a script that takes a number as input and prints its reverse. Use a while loop for the reversal.
+
+// let arr = [1, 2, 3, 4, 5];
+// let i = 5 - 1;
+// let store = [];
+
+// while (i >= 0) {
+//   store.push(arr[i]);
+//   i--;
+// }
+// console.log(store)
+
+// write a function to reverse a number with using while loop
+
+// function reverseNumber(numbers) {
+//   const convertInString = numbers.toString().split("");
+//   let storeNumber = [];
+//   let i = convertInString.length - 1;
+//   while (i >= 0) {
+//     storeNumber.push(+convertInString[i])
+//     i--;
+//   }
+//   const reverseNumbers = Number(storeNumber.join(""))
+//   return reverseNumbers
+// }
+
+// console.log(reverseNumber(345));
+
+// Write a function to check if a given number is a palindrome (reads the same backward as forward) using a while loop.
+
+// function isPalindrome(numbers) {
+//   const convertInString = numbers.toString().split("");
+
+//   let i = convertInString.length - 1;
+//   const storePush = [];
+
+//   while (i >= 0) {
+//     storePush.push(convertInString[i]);
+//     i--;
+//   }
+//   const inNumber = +storePush.join("");
+//   return inNumber === numbers
+//     ? "this number is palimdrom"
+//     : "this number is not palimdrom";
+// }
+
+// console.log(isPalindrome(131));
+
+// Generate the multiplication table (up to 10) for a given number using a while loop.
+
+// function generateTable(num) {
+//   let i = 1;
+
+//   while (i <= 10) {
+//     console.log(`${num} x ${i} = ${i * num}`);
+//     i++;
+//   }
+// }
+// console.log(generateTable(6));
+
+// Write a program to check if a given number is prime using a while loop.
+
+// function isPrime(n) {
+//   let i = 2;
+//   while (i <= n) {
+//     if (n % i === 0) {
+//       return true;
+//     }
+//     i++;
+//   }
+//   return false;
+// }
+
+// console.log(isPrime(93));
+
+// now doing nested loop Practise
+
+// 1 => Write a program to print the following pattern using nested loops:
+
+// *
+// **
+// ***
+// ****
+
+function generateLeftTraingle() {
+  let pattern = "";
+
+  for (let i = 1; i <= 5; i++) {
+    for (let j = 0; j < i; j++) {
+      pattern += "*";
+    }
+    pattern += "\n";
+  }
+  return pattern;
+}
+
+// console.log(generateLeftTraingle());
+
+// 2 => Use nested loops to generate the multiplication table (up to 10) for numbers from 1 to 5.
+
+// function generateTable(start, end) {
+//   for (let i = start; i <= end; i++) {
+//     for (let j = 1; j <= 10; j++) {
+//       console.log(`${i} x ${j} = ${i * j}`)
+//     }
+//     console.log(`-------------------------`)
+//   }
+// }
+
+// console.log(generateTable(6, 200));
+
+// 3 => Write a program to print a pyramid pattern using
+
+// *
+// ***
+// *****
+// *******
+
+// function generatePyramid() {
+//   let string = "";
+
+//   for (let i = 1; i <= 5; i++) {
+//     for (let j = 1; j <= 5 - i; j++) {
+//       string += " ";
+//     }
+//     for (let k = 0; k < 2 * i - 1; k++) {
+//       string += "*";
+//     }
+//     string += "\n";
+//   }
+//   return string;
+// }
+
+// console.log(generatePyramid());
+
+// 4 => Create a program to print the following reverse triangle pattern:
+
+// *****
+// ****
+// ***
+// **
+// *
+
+function generateReverseTraingle() {
+  let string = "";
+
+  for (let i = 5; i >= 1; i--) {
+    for (let j = 1; j <= i; j++) {
+      string += "*";
+    }
+    string += "\n";
+  }
+  return string;
+}
+
+// console.log(generateReverseTraingle());
+
+// 5 =>Write a program to print the following number pattern using nested loops:
+
+// 12345
+// 1234
+// 123
+// 12
+// 1
+
+// function generateNumberPattern(string) {
+//   let newString = "";
+
+//   for (let i = 5; i >= 1; i--) {
+//     newString += string.slice(0, i);
+//     newString += "\n";
+//   }
+//   return newString;
+// }
+
+// console.log(generateNumberPattern("12345"));
+
+// Second Approch
+
+// function generateNumberPattern(string) {
+//   let newString = "";
+
+//   let n = string.length;
+//   for (let i = 1; i <= 5; i++) {
+//     newString += string.slice(0, n);
+//     newString += "\n";
+//     n--;
+//   }
+//   return newString;
+// }
+
+// console.log(generateNumberPattern("12345"));
+
+// third Approch
+
+// function generateNumberPattern(string) {
+//   let newString = "";
+
+//   for (let i = 0; i < string.length; i++) {
+//     let getString = string.length - i;
+//     newString += string.slice(0, getString);
+//     newString += "\n";
+//   }
+//   return newString;
+// }
+
+// console.log(generateNumberPattern("12345"));
+
+// 6 => Implement a program to print Floyd's Triangle using nested loops:
+
+// 1
+// 2 3
+// 4 5 6
+// 7 8 9 10
+
+function floydsPattern(string) {
+  let newString = "";
+
+  let intialValue = 0;
+  for (let i = 1; i < 5; i++) {
+    let row = string.slice(intialValue, intialValue + i);
+    newString += row + "\n";
+    intialValue += i;
+  }
+  const spaceBetweenElement = newString.split("").join(" ");
+  return spaceBetweenElement;
+}
+
+// console.log(floydsPattern("12345678910"));
+
+// => 7 Write a program to print a diamond pattern using nested loops:
+
+//    *
+//   ***
+//  *****
+//   ***
+//    *
+
+// function DiamondPattern() {
+//   let result = "";
+
+//   for (let i = 1; i <= 3; i++) {
+//     for (let j = 0; j < 5 - i; j++) {
+//       result += " ";
+//     }
+//     for (let k = 0; k < 2 * i - 1; k++) {
+//       result += "*";
+//     }
+//     result += "\n";
+//   }
+
+//   for (let i = 3; i >= 1; i--) {
+//     for (let j = 0; j < 5 - i; j++) {
+//       result += " ";
+//     }
+//     for (let k = 0; k < 2 * i - 1; k++) {
+//       result += "*";
+//     }
+//     result += "\n";
+//   }
+
+//   return result;
+// }
+
+// // Call the function without console.log
+// console.log(DiamondPattern());
+
+// 8 => Write a program to print a half pyramid of numbers using nested loops:
+
+// 1
+// 22
+// 333
+// 4444
+
+function pyramidOfNumbers(string) {
+  let newString = "";
+
+  for (let i = 0; i < 4; i++) {
+    for (let j = 0; j <= i; j++) {
+      newString += string.slice(i, i + 1);
+    }
+    newString += "\n";
+  }
+  return newString;
+}
+
+// console.log(pyramidOfNumbers("1234"));
+
+// Second Approch
+
+function pyramidOfNumbers(string) {
+  let newString = "";
+
+  let num = 0;
+  for (let i = 1; i <= 4; i++) {
+    let getElement = string.slice(num, i);
+    newString += getElement.repeat(i);
+    newString += "\n";
+    num++;
+  }
+  return newString;
+}
+
+// console.log(pyramidOfNumbers("1234"));
+
+// write a function to find the even number in the string
+
+function evenString(number) {
+  let string = "";
+
+  const breakNumber = number.split("");
+  for (let i = 0; i < breakNumber.length; i++) {
+    const inNumber = +breakNumber[i];
+
+    if (inNumber % 2 == 0) {
+      string += inNumber;
+    }
+  }
+  return string
+}
+
+// console.log(evenString("1234"));
