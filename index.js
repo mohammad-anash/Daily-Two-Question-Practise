@@ -875,17 +875,104 @@ function isAnagram(string1, string2) {
 
 // console.log(stringComparison("aabcccccaaa"));
 
-// 39 => Given a string and a pattern, find the minimum window in the string that contains all the characters of the pattern.
+// 39 => write a function to add between tow who even
 
-function minimumWindowSubstring(string, pattern) {
-  let newString = "";
+// exampl: 567841;
+// answer: 5678-41;
+
+// function addHyphen(string) {
+//   let store = [];
+//   string.split("").forEach((char) => {
+//     const inNumber = +char;
+//     store.push(inNumber);
+//   });
+
+//   let newString = `${store[0]}`;
+//   for (let i = 1; i < store.length; i++) {
+//     if (store[i - 1] % 2 === 0 && store[i] % 2 === 0) {
+//       newString += `-${store[i]}`;
+//     } else {
+//       newString += `${store[i]}`;
+//     }
+//   }
+//   return newString;
+// }
+
+// console.log(addHyphen("567841"));
+
+// Second Approch
+
+// function addHyphen(string) {
+//   let store = [];
+//   string.split("").forEach((char) => {
+//     const inNumber = +char;
+//     store.push(inNumber);
+//   });
+
+//   return store.reduce(
+//     (prev, current, index, array) =>
+//       index < array.length - 1 &&
+//       current % 2 === 0 &&
+//       array[index + 1] % 2 === 0
+//         ? (prev += `${current}-`)
+//         : (prev += `${current}`),
+//     ""
+//   );
+// }
+
+// console.log(addHyphen("567841"));
+
+// 40 => write a function to find the middle value of the string
+
+function medianValue(string) {
+  let length = string.length;
+  const middleValue = Math.floor(length / 2);
 
   for (let i = 0; i < string.length; i++) {
-    if (string[i].includes(pattern)) {
-      newString += string[i];
+    if (length % 2 != 0) {
+      return string[middleValue];
+    } else {
+      return string.slice(middleValue - 1, middleValue + 1);
     }
   }
-  return newString;
 }
 
-console.log(minimumWindowSubstring("ADOBECODEBANC", "ABC"));
+// console.log(medianValue("application"));
+// console.log(medianValue("filter"));
+
+// 41 => write a function to find the multiple middle value in the array of name
+
+function multipleMiddle(arr) {
+  let store = [];
+  for (const names of arr) {
+    const length = names.length;
+    const middle = Math.floor(length / 2);
+
+    if (length % 2 != 0) {
+      store.push(names.slice(middle, middle + 1));
+    } else {
+      store.push(names.slice(middle - 1, middle + 1));
+    }
+  }
+  return store;
+}
+
+// console.log(multipleMiddle(["anash", "filter", "nawaz", "abbas", "kyle"]));
+
+// Second Approch
+
+function multipleMiddle(arr) {
+  return arr.reduce((prev, current, index) => {
+    const lengths = current.length;
+    const middle = Math.floor(lengths / 2);
+
+    lengths % 2 != 0
+      ? prev.push(current.slice(middle, middle + 1))
+      : prev.push(current.slice(middle - 1, middle + 1));
+
+    return prev;
+  }, []);
+}
+
+// console.log(multipleMiddle(["anash", "filter", "nawaz", "abbas", "kyle"]));
+
