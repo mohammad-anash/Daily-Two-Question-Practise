@@ -976,3 +976,474 @@ function multipleMiddle(arr) {
 
 // console.log(multipleMiddle(["anash", "filter", "nawaz", "abbas", "kyle"]));
 
+// 42 => doing a simple task
+
+// create one input and two button addbutton and displaybutton
+// your task  like write value in input and click addbutton and input value is empty
+// then second time wrie  more valuke in the input and click addbuttion then click in display button
+// the the show the whole data you write in input
+
+// select all element
+
+// const inputEl = document.querySelector("#input");
+// const addButton = document.querySelector(".add");
+// const displayButton = document.querySelector(".display");
+
+// let store = [];
+// function addvalue() {
+//   let inputValue = +inputEl.value;
+//   store.push(inputValue)
+//   inputEl.value = "";
+//   return store;
+// }
+
+// function showStoreData(){
+//   console.log(addvalue())
+// }
+
+// displayButton.addEventListener("click", showStoreData);
+// addButton.addEventListener("click", addvalue);
+
+// 43 => write a function to find the second largest element in the array
+
+function secondLargest(arr) {
+  const sortedArr = arr.sort((a, b) => a - b);
+  let firstElement = arr[0];
+  const lastElement = arr[arr.length - 1];
+
+  for (let i = 0; i < sortedArr.length; i++) {
+    if (firstElement !== sortedArr[i] && sortedArr[i] != lastElement) {
+      firstElement = sortedArr[i];
+    }
+  }
+  return firstElement;
+}
+
+// console.log(secondLargest([54, 67, 34, 21, 90]));
+
+// second Approch
+
+function secondLargest(arr) {
+  const sortedArr = arr.sort((a, b) => a - b);
+  return sortedArr[sortedArr.length - 2];
+}
+
+// console.log(secondLargest([54, 67, 34, 21, 90]));
+
+// third Approch
+
+function secondLargest(arr) {
+  const sortedArr = arr.sort((a, b) => a - b);
+  const maximumNumber = Math.max(...sortedArr);
+  const findIndex = sortedArr.indexOf(maximumNumber) - 1;
+  return `this is second largest element in the array: ${arr[findIndex]}`;
+}
+
+// console.log(secondLargest([54, 67, 34, 21, 90]));
+
+// 44 => impelement a function to find the missing element & number in the array
+
+function somethingIsMissing(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] + 1 != arr[i + 1]) {
+      return arr[i] + 1;
+    }
+  }
+}
+
+// console.log(somethingIsMissing([1, 2, 3, 4, 6]));
+
+// Second Approch
+
+function somethingIsMissing(arr) {
+  const reverseArr = arr.reverse();
+  for (let i = 0; i < reverseArr.length - 1; i++) {
+    if (reverseArr[i] - reverseArr[i + 1] !== 1) {
+      return reverseArr[i] - 1;
+    }
+  }
+
+  return "No missing element found";
+}
+
+// console.log(somethingIsMissing([1, 1, 1, 1, 3]));
+
+// 45 => write a function to generate the faboananci Series using reduce method
+
+function fabSerires(n) {
+  let num = 2;
+  return Array.from({ length: n }).reduce(
+    (prev, current) => {
+      const getValues = prev[num - 2] + prev[num - 1];
+      prev.push(getValues);
+      num++;
+      return prev;
+    },
+    [0, 1]
+  );
+}
+
+// console.log(fabSeries(10));
+
+// 46 => write a function to print this type of pattern like this:
+
+//       *
+//       *
+//       *
+// * * * * * * *
+//       *
+//       *
+//       *
+
+// function plusPattern() {
+//   let newString = "";
+
+//   for (let i = 1; i <= 4; i++) {
+//     newString += " ".repeat(5);
+//     for (let j = 1; j >= 1; j--) {
+//       newString += "*";
+//     }
+//     newString += "\n";
+//   }
+//   for (let k = 1; k <= 6; k++) {
+//     newString += "* ";
+//   }
+//   newString += "\n";
+
+//   for (let l = 0; l <= 3; l++) {
+//     newString += " ".repeat(5);
+
+//     for (let m = 1; m >= 1; m--) {
+//       newString += "*";
+//       newString += "\n";
+//     }
+//   }
+//   return newString;
+// }
+
+// console.log(plusPattern());
+
+// Second Approch
+
+// function plusPattern() {
+//   let newString = "";
+
+//   for (let i = 1; i <= 4; i++) {
+//     newString += " ".repeat(5);
+//     newString += "*".repeat(1);
+//     newString += "\n";
+//   }
+//   newString += "* ".repeat(6);
+//   newString += "\n";
+
+//   for (let l = 0; l <= 3; l++) {
+//     newString += " ".repeat(5);
+//     newString += "*".repeat(1);
+//     newString += "\n";
+//   }
+//   return newString;
+// }
+
+// console.log(plusPattern());
+
+// 47 => write a function to generate the pattern like this
+
+//         *
+//        * *
+//       *   *
+//      *     *
+//     *       *
+//    *         *
+//   * * * * * * *
+
+// function trainglePattern() {
+//   let newString = "";
+//   for (let i = 0; i < 1; i++) {
+//     newString += " ".repeat(8);
+//     newString += "*".repeat(1)
+//     newString += "\n";
+//   }
+
+//   let n = 1;
+//   for (let i = 0; i <= 7; i++) {
+//     for (let j = 0; j < 7 - i; j++) {
+//       newString += " ";
+//     }
+//     const increaseSpace = " ".repeat(n + i);
+//     newString += `*${increaseSpace}*`;
+//     newString += "\n";
+//     n++;
+//   }
+//   newString += "* ".repeat(9);
+//   return newString;
+// }
+
+// console.log(trainglePattern());
+
+// 48 => write a function generate a patternn like this
+
+// ********
+// *      *
+// *      *
+// *      *
+// ********
+
+// function generatePattern() {
+//   let newString = "********\n";
+//   for (let i = 1; i <= 5; i++) {
+//     newString += "*      *\n";
+//   }
+//   newString += "********\n"
+//   return newString;
+// }
+
+// console.log(generatePattern());
+
+// 49 => write funttion to geneta a diamond patterns
+
+// function diamondPattern() {
+//   let newString = "";
+
+//   for (let i = 1; i <= 5; i++) {
+//     for (let j = 0; j < 5 - i; j++) {
+//       newString += " ";
+//     }
+
+//     for (let k = 0; k < 2 * i - 1; k++) {
+//       newString += "*";
+//     }
+//     newString += "\n";
+//   }
+//   for (let n = 5; n >= 1; n--) {
+//     for (let m = 0; m < 5 - n; m++) {
+//       newString += " ";
+//     }
+//     for (let l = 0; l < 2 * n - 1; l++) {
+//       newString += "*";
+//     }
+//     newString += "\n";
+//   }
+//   return newString;
+// }
+
+// console.log(diamondPattern());
+
+// 50 => write afunction to print pattern like this
+
+// ******
+// *****
+// ***
+// **
+// *
+// **
+// ***
+// ****
+// ******
+
+// function generatePattern() {
+//   let newString = "";
+//   for (let i = 5; i >= 1; i--) {
+//     for (let j = 0; j < i; j++) {
+//       newString += "* ";
+//     }
+//     newString += "\n";
+//   }
+
+//   for (let l = 2; l <= 5; l++) {
+//     for (let m = 0; m < l; m++) {
+//       newString += "* ";
+//     }
+//     newString += "\n";
+//   }
+//   return newString;
+// }
+
+// console.log(generatePattern());
+
+// Maths Problem
+
+// 51 => write a function to check the given string is pangram or not
+
+function isPangram(string) {
+  const allLetters = "äbcdefghijklmnopqrstuvwxyz";
+  const lowerCaseString = string.toLowerCase();
+
+  for (const letter of lowerCaseString) {
+    if (lowerCaseString.indexOf(letter) === -1) {
+      return "Not Pangram";
+    }
+  }
+  return "string is Pangram";
+}
+
+// console.log(isPangram("The Quick Brown Fox Jumps over the Lazy Dog"));
+
+// 52 => write a function to count digit;
+
+function counterDigit(digit) {
+  return digit.toString().length;
+}
+
+// console.log(counterDigit(12345));
+
+// 53 =>  write a function to reverse a number
+
+function reverseNumber(number) {
+  return +number.toString().split("").reverse().join("");
+}
+
+// console.log(reverseNumber(123));
+
+// Second Way
+
+function reverseNumber(number) {
+  const inString = number.toString();
+  let reverseIt = "";
+
+  for (let i = inString.length - 1; i >= 0; i--) {
+    reverseIt += inString[i];
+  }
+  return +reverseIt;
+}
+
+// console.log(reverseNumber(1234));
+
+// 54 => write a function to check the given number is plimdrom or not
+
+function isPalimdrom(number) {
+  const inString = +number.toString().split("").reverse().join("");
+
+  return number === inString
+    ? "Number is Palimdrom"
+    : "Number is Not Palimdrom";
+}
+
+// console.log(isPalimdrom(343));
+
+// 55 => write a function to check the given number is armstring
+
+function isArmstrong(number) {
+  const inString = number.toString().split("");
+  let sum = 0;
+
+  for (let i = 0; i < inString.length; i++) {
+    const makeArmstrongNumber = (+inString[i]) ** 3;
+    sum += makeArmstrongNumber;
+  }
+  return sum === number ? "Number is ArmStrong" : "Number is not ArmStrong";
+}
+// console.log(isArmstrong(153));
+
+// let's do with reduce method
+
+function isArmstrong(number) {
+  const checkArmstrong = number
+    .toString()
+    .split("")
+    .reduce((prev, current) => {
+      prev += (+current) ** 3;
+      return prev;
+    }, 0);
+
+  return checkArmstrong === number
+    ? "number is armstrong"
+    : "number is not armstrong";
+}
+
+// console.log(isArmstrong(153));
+
+// 56 => Given a number, print all the divisors of the number. A divisor is a number that gives the remainder as zero when divided.
+
+// Input: n = 36
+// Output: 1 2 3 4 6 9 12 18 36
+// Explanation: All the divisors of 36 are printed.
+
+function allNDivisor(n) {
+  let store = [];
+  let i = 0;
+
+  while (n >= i) {
+    if (n % i === 0) {
+      store.push(i);
+    }
+    i++;
+  }
+  return store;
+}
+
+// console.log(allNDivisor(36));
+
+// Second Approch
+
+function allNDivisor(n) {
+  let store = [];
+
+  for (let i = 0; i <= n; i++) {
+    if (n % i === 0) {
+      store.push(i);
+    }
+  }
+  return store;
+}
+
+// console.log(allNDivisor(36));
+
+// 57 => Given a number, check whether it is prime or not. A prime number is a natural number that is only divisible by 1 and by itself.
+
+// Example 1:
+// Input: N = 3
+// Output: Prime
+// Explanation: 3 is a prime number
+
+function isPrime(n) {
+  let i = 2;
+
+  while (n >= i) {
+    if (i % n === 0) {
+      return true;
+    }
+    i++;
+  }
+  return false;
+}
+
+// console.log(isPrime(17));
+
+function isPrime(n) {
+  for (let i = 2; i <= n; i++) {
+    if (i % n === 0) {
+      return true;
+    }
+  }
+  return false;
+}
+
+// console.log(isPrime(17));
+
+// write a function to the given number is strong or not
+
+// Example => we have a number 145
+// now find the factorial of each digit 1 =>1, 2 => 24, 5 => 125
+// and let;s add then then what is answer => 145
+
+// let's Solve
+
+function isStrongNumber(number) {
+  const inString = number.toString().split("");
+  let store = [];
+
+  let sum = 0;
+  let product = 1;
+  for (let i = 0; i < inString.length; i++) {
+    for (let j = 1; j <= inString[i]; j++) {
+      product *= j;
+      console.log(j, product);
+    }
+    store.push(product);
+    product = 1;
+    sum += store[i];
+  }
+  return sum === number ? "this is strong number" : "this is not strong number";
+}
+
+console.log(isStrongNumber(145));
