@@ -1428,22 +1428,479 @@ function isPrime(n) {
 
 // let's Solve
 
-function isStrongNumber(number) {
-  const inString = number.toString().split("");
-  let store = [];
+// function isStrongNumber(number) {
+//   const inString = number.toString().split("");
+//   let store = [];
 
-  let sum = 0;
-  let product = 1;
-  for (let i = 0; i < inString.length; i++) {
-    for (let j = 1; j <= inString[i]; j++) {
-      product *= j;
-      console.log(j, product);
+//   let sum = 0;
+//   let product = 1;
+//   for (let i = 0; i < inString.length; i++) {
+//     for (let j = 1; j <= inString[i]; j++) {
+//       product *= j;
+//     }
+//     store.push(product);
+//     product = 1;
+//     sum += store[i];
+//   }
+//   return sum === number ? "this is strong number" : "this is not strong number";
+// }
+
+// console.log(isStrongNumber(145));
+
+// 58 => write a function to check the all vowel present in the sentence or not
+
+function checkAllVowelPresentOrNot(sentence) {
+  let newString = "";
+  const vowel = "aeiou";
+  for (let i = 0; i < vowel.length; i++) {
+    const firstValue = vowel[i].toString().split("").shift();
+    if (sentence.includes(firstValue)) {
+      newString += firstValue;
     }
-    store.push(product);
-    product = 1;
-    sum += store[i];
   }
-  return sum === number ? "this is strong number" : "this is not strong number";
+  return newString === vowel
+    ? "yes all vowel present in the sentence"
+    : "not all vowel present in the sentence";
 }
 
-console.log(isStrongNumber(145));
+// console.log(
+//   checkAllVowelPresentOrNot("my name is anash i want to be programmer")
+// );
+
+// 59 => wrtie a function to the given number is strong number or not
+
+function isStrongNumber(number) {
+  let sum = 0;
+  let product = 1;
+  const inArray = number.toString().split("");
+
+  for (let i = 0; i < inArray.length; i++) {
+    const inNumber = Number(inArray[i]);
+    for (let j = 1; j <= inNumber; j++) {
+      product *= j;
+    }
+    sum += product;
+    product = 1;
+  }
+  return sum === number
+    ? "this is the strong number"
+    : "this is not strong number";
+}
+
+// console.log(isStrongNumber(145));
+
+// 60 => write a function to find the twin prime number between 2 to 100
+
+// function isPrime(n) {
+//   for (let i = 2; i <= Math.sqrt(n); i++) {
+//     if (n % i === 0) {
+//       return false;
+//     }
+//   }
+//   return true;
+// }
+
+// function primeBetweenToTwoHundred(start, end) {
+//   let store = [];
+//   let twinPrime = "";
+//   for (let i = start; i <= end; i++) {
+//     if (isPrime(i)) {
+//       store.push(i);
+//     }
+//    }
+//   for (let i = 0; i < store.length; i++) {
+//     if (store[i + 1] - store[i] === 2) {
+//       twinPrime += `${store[i]} ${store[i + 1]}`;
+//       twinPrime += "\n";
+//     }
+//   }
+//   return twinPrime;
+// }
+// console.log(primeBetweenToTwoHundred(2, 100));
+
+// 61 => Given an array of numbers, write a function that returns an array that...
+
+// Has all duplicate elements removed.
+// Is sorted from least to greatest value.
+
+function uniqueSort(arr) {
+  let result = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    if (!result.includes(arr[i])) {
+      result.push(arr[i]);
+    }
+  }
+
+  for (let i = 0; i < result.length; i++) {
+    if (result[i] < result[i + 1]) {
+      let temp = result[i + 1];
+      result[i + 1] = result[i];
+      result[i] = temp;
+    }
+  }
+  // return result.reverse();
+}
+
+// console.log(uniqueSort([1, 2, 4, 3])); //  [1, 2, 3, 4]
+// console.log(uniqueSort([1, 4, 4, 4, 4, 4, 3, 2, 1, 2])); //  [1, 2, 3, 4]
+// console.log(uniqueSort([6, 7, 3, 2, 1])); //  [1, 2, 3, 6, 7]
+
+// Second Approch
+
+function uniqueSort(arr) {
+  const removedDuplicate = Array.from(new Set(arr)).sort((a, b) => a - b);
+  return removedDuplicate;
+}
+
+// console.log(uniqueSort([1, 2, 4, 3])); //  [1, 2, 3, 4]
+// console.log(uniqueSort([1, 4, 4, 4, 4, 4, 3, 2, 1, 2])); //  [1, 2, 3, 4]
+// console.log(uniqueSort([6, 7, 3, 2, 1])); //  [1, 2, 3, 6, 7]
+
+// 62 =>  Create a function that takes an array of numbers and returns the sum of the two lowest positive numbers.
+
+function sumTwoSmallestNums(arr) {
+  let onlyPositive = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] > 0) {
+      onlyPositive.push(arr[i]);
+    }
+  }
+  const sortedArr = onlyPositive.sort((a, b) => a - b);
+  let sum = 0;
+  for (let i = 0; i <= 1; i++) {
+    sum += sortedArr[i];
+  }
+  // return sum;
+}
+
+// console.log(sumTwoSmallestNums([19, 5, 42, 2, 77])); //  7
+// console.log(sumTwoSmallestNums([10, 343445353, 3453445, 3453545353453])); //  3453455
+// console.log(sumTwoSmallestNums([2, 9, 6, -1])); //  8
+// console.log(
+//   sumTwoSmallestNums([879, 953, 694, -847, 342, 221, -91, -723, 791, -587])
+// ); //  563
+// console.log(sumTwoSmallestNums([3683, 2902, 3951, -475, 1617, -2385])); //  451
+
+// Second Approch
+
+function sumTwoSmallestNums(arr) {
+  const positiveInteger = arr.filter((element) => element > 0);
+
+  const reverseSorted = positiveInteger.sort((a, b) => a - b).reverse();
+  const firstLowest = reverseSorted[reverseSorted.length - 1];
+  const secondLowest = reverseSorted[reverseSorted.length - 2];
+
+  return firstLowest + secondLowest;
+}
+
+// console.log(sumTwoSmallestNums([19, 5, 42, 2, 77])); //  7
+// console.log(sumTwoSmallestNums([10, 343445353, 3453445, 3453545353453])); //  3453455
+// console.log(sumTwoSmallestNums([2, 9, 6, -1])); //  8
+// console.log( sumTwoSmallestNums([879, 953, 694, -847, 342, 221, -91, -723, 791, -587])
+// );/  563
+// console.log(sumTwoSmallestNums([3683, 2902, 3951, -475, 1617, -2385])); //  451
+
+// 63 => Given a square matrix (i.e. same number of rows as columns), its trace is the sum of the entries in the main diagonal (i.e. the diagonal line from the top left to the bottom right).
+
+// As an example, for:
+
+// [
+// [1, 2, 3],
+// [4, 5, 6],
+// [7, 8, 9]
+// ]
+// ... the trace is 1 + 5 + 9 = 15.
+
+function trace(arr) {
+  let sum = 0;
+  for (let i = 0; i < arr.length; i++) {
+    sum += arr[i][i];
+  }
+  return sum;
+}
+
+// console.log(
+//   trace([
+//     [1, 4],
+//     [4, 1],
+//   ])
+// ); //  2
+// // 1 + 1 = 2
+// console.log(
+//   trace([
+//     [1, 2, 3],
+//     [4, 5, 6],
+//     [7, 8, 9],
+//   ])
+// ); //  15
+// // 1 + 5 + 9 = 15
+// console.log(
+//   trace([
+//     [1, 0, 1, 0],
+//     [0, 2, 0, 2],
+//     [3, 0, 3, 0],
+//     [0, 4, 0, 4],
+//   ])
+// ); //  10
+
+// // 1 + 2 + 3 + 4 = 10
+
+// 64 => Given a total due and an array representing the amount of change in your pocket, determine whether or not you are able to pay for the item. Change will always be represented in the following order: quarters, dimes, nickels, pennies.
+
+// To illustrate: changeEnough([25, 20, 5, 0], 4.25) should yield true, since having 25 quarters, 20 dimes, 5 nickels and 0 pennies gives you 6.25 + 2 + .25 + 0 = 8.50.
+
+function changeEnough(change, amount_due) {
+  const total_change =
+    change[0] * 0.25 + change[1] * 0.1 + change[2] * 0.05 + change[3] * 0.01;
+
+  return total_change >= amount_due;
+}
+
+// // Test cases
+// console.log(changeEnough([2, 100, 0, 0], 14.11)); // //  false
+// console.log(changeEnough([0, 0, 20, 5], 0.75)); // //  true
+// console.log(changeEnough([30, 40, 20, 5], 12.55)); // //  true
+// console.log(changeEnough([10, 0, 0, 50], 3.85)); // //  false
+// console.log(changeEnough([1, 0, 5, 219], 19.99)); // //  false
+
+// 65 => Create a function that takes an array of items and checks if the last item matches the rest of the array concatenated together.
+
+function matchLastItem(arr) {
+  const lastItem = arr.pop();
+  const connectOtherElement = arr.join("");
+  return lastItem === connectOtherElement;
+}
+
+// console.log(matchLastItem(["rsq", "6hi", "g", "rsq6hig"])); //  true
+// console.log(matchLastItem([1, 1, 1, "11"])); //  false
+// console.log(matchLastItem([8, "thunder", true, "8thundertrue"])); //  true
+
+function matchLastItem(arr) {
+  const lastItem = arr[arr.length - 1];
+  const otherElement = arr.slice(0, arr.length - 1).join("");
+  return otherElement === lastItem;
+}
+
+// console.log(matchLastItem(["rsq", "6hi", "g", "rsq6hig"])); //  true
+// console.log(matchLastItem([1, 1, 1, "11"])); //  false
+// console.log(matchLastItem([8, "thunder", true, "8thundertrue"])); //  true
+
+// 66 => Given an array of integers, find the pair of adjacent elements that have the largest product and return that product.
+
+function adjacentProduct(arr) {
+  let ProductTwoWElement = [];
+
+  for (let i = 0; i < arr.length - 1; i++) {
+    ProductTwoWElement.push(arr[i] * arr[i + 1]);
+  }
+  const largestProduct = Math.max(...ProductTwoWElement);
+  return largestProduct;
+}
+
+// console.log(adjacentProduct([3, 6, -2, -5, 7, 3])); //  21
+// console.log(adjacentProduct([5, 6, -4, 2, 3, 2, -23])); //  30
+// console.log(adjacentProduct([0, -1, 1, 24, 1, -4, 8, 10])); //  80
+
+// 67 => John is playing a dice game. The rules are as follows.
+
+// Roll two dice.
+// Add the numbers on the dice together.
+// Add the total to your overall score.
+// Repeat this for three rounds.
+// But if you roll DOUBLES, your score is instantly wiped to 0 and your game ends immediately!
+
+// Create a function which takes in a matrix as input, and return John's score after his game has ended.
+
+function diceGame(arr) {
+  let totalScore = 0;
+
+  for (let pair of arr) {
+    console.log(arr);
+    if (pair[0] === pair[1]) {
+      totalScore += 0;
+    } else {
+      totalScore += pair[0] + pair[1];
+    }
+  }
+
+  return totalScore;
+}
+
+// // Test cases
+// console.log(
+//   diceGame([
+//     [1, 2],
+//     [3, 4],
+//     [5, 6],
+//   ])
+// console.log(// ); //);
+// console.log(
+//   diceGame([
+//     [1, 1],
+//     [5, 6],
+//     [6, 4],
+//   ])
+// console.log(// ); //);
+// console.log(
+//   diceGame([
+//     [4, 5],
+//     [4, 5],
+//     [4, 5],
+//   ])
+// console.log(// ); //);
+
+// console.log(
+//   diceGame([
+//     [1, 2],
+//     [3, 4],
+//     [5, 6],
+//   ])
+// ); // '' 21
+// console.log(
+//   diceGame([
+//     [1, 1],
+//     [5, 6],
+//     [6, 4],
+//   ])
+// ); // '' 0
+// console.log(
+//   diceGame([
+//     [4, 5],
+//     [4, 5],
+//     [4, 5],
+//   ])
+// ); // '' 27
+
+// 68 => In this challenge, you have to establish if a given integer n is a Sastry number. If the number resulting from the concatenation of an integer n with its successor is a perfect square, then n is a Sastry Number.
+
+// Given a positive integer n, implement a function that returns true if n is a Sastry number, or false if it's not.
+
+function isSastry(n) {
+  let concatenated = parseInt(String(n) + String(n + 1));
+  let squareRoot = Math.sqrt(concatenated);
+  return Number.isInteger(squareRoot);
+}
+
+// console.log(isSastry(183));
+// // Concatenation of n and its successor = 183184
+// // 183184 is a perfect square (428 ^ 2)
+// console.log(isSastry(184));
+// // Concatenation of n and its successor = 184185
+// // 184185 is not a perfect square
+// console.log(isSastry(106755));
+// // Concatenation of n and its successor = 106755106756
+// // 106755106756 is a perfect square (326734 ^ 2)
+
+// 69 => Given an array with an odd number of elements, return whether the scale will tip "left" or "right" based on the sum of the numbers. The scale will tip on the direction of the largest total. If both sides are equal, return "balanced".
+
+function scaleTip(arr) {
+  const findTipIndex = arr.indexOf("I");
+  const leftArr = arr.slice(0, findTipIndex);
+  const rigthArr = arr.slice(findTipIndex + 1, arr.length);
+
+  let leftSum = 0;
+  let rigthSum = 0;
+  for (let i = 0; i < leftArr.length; i++) {
+    leftSum += leftArr[i];
+    rigthSum += rigthArr[i];
+  }
+  if (leftSum > rigthSum) return "left";
+  else if (rigthSum > leftSum) return "right";
+  else return "balance";
+}
+
+// console.log(scaleTip([0, 0, "I", 1, 1]));
+// // 0 < 2 so it will tip right
+// console.log(scaleTip([1, 2, 3, "I", 4, 0, 0]));
+// // 6 > 4 so it will tip left
+// console.log(scaleTip([5, 5, 5, 0, "I", 10, 2, 2, 1]));
+// // 15 = 15 so it will stay balanced
+
+// 70 => Write a method that returns array of all the numbers from 1 to an integer argument. But for multiples of three use “Fizz” instead of the number and for the multiples of five use “Buzz”. For numbers which are multiples of both three and five use “FizzBuzz”.
+
+function fizzBuzz(n) {
+  let store = [];
+
+  for (let i = 1; i <= n; i++) {
+    if (i % 3 === 0) {
+      store.push("fizz");
+    } else if (i % 5 === 0) {
+      store.push("Buzz");
+    } else if (i % 3 === 0 && i % 5 === 0) {
+      store.push("fizzBuzz");
+    } else {
+      store.push(i);
+    }
+  }
+  return store;
+}
+
+// console.log(fizzBuzz(10)); //  [1, 2, "Fizz", 4, "Buzz", "Fizz", 7, 8, "Fizz", "Buzz"]
+// console.log(fizzBuzz(15)); //  [1, 2, "Fizz", 4, "Buzz", "Fizz", 7, 8, "Fizz", "Buzz", 11, "Fizz", 13, 14, "FizzBuzz"]
+
+// 71 => Create a function which takes in a number n as input and returns all numbers up to and including n joined together in a string. Separate each digit from each other with the character "-".
+
+function joinDigits(n) {
+  let digitString = "";
+
+  for (let i = 1; i <= n; i++) {
+    digitString += i;
+  }
+
+  const counting = digitString.split("");
+  let newString = "";
+  for (let i = 0; i < counting.length; i++) {
+    newString += `${counting[i]}-`;
+  }
+  const finalResult = newString.slice(0, newString.length - 1);
+  return finalResult;
+}
+
+// console.log(joinDigits(4)); //  "1-2-3-4"
+// console.log(joinDigits(11)); // "1-2-3-4-5-6-7-8-9-1-0-1-1"
+// console.log(joinDigits(15)); //1-2-3-4-5-6-7-8-9-1-0-1-1-1-2-1-3-1-4-1-5"
+
+// 72 => An isogram is a word that has no duplicate letters. Create a function that takes a string and returns either true or false depending on whether or not it's an "isogram".
+
+function isIsogram(string) {
+  let letter = string.toLowerCase().split("");
+  for (let i = 0; i < letter.length; i++) {
+    if (letter[i] === letter[i + 1]) {
+      return false;
+    }
+  }
+  return true;
+}
+
+// console.log(isIsogram("Algorism"));
+// console.log(isIsogram("PasSword"));
+// console.log(isIsogram("Consecutive"));
+
+// 73 => Write a function that returns the longest sequence of consecutive zeroes in a binary string
+function longestZero(string) {
+  let newString = [];
+  let main = [];
+
+  for (let i = 0; i < string.length; i++) {
+    if (string[i] === "0") {
+      newString.push(string[i]);
+    } else {
+      if (newString.length > 0) {
+        main.push(newString);
+        newString = [];
+      }
+    }
+  }
+
+  if (newString.length > 0) {
+    main.push(newString);
+  }
+
+  return main;
+}
+
+// console.log(longestZero("01100001011000")); //  [["0", "0", "0", "0"]]
+// console.log(longestZero("100100100")); //  [["0", "0"]]
+// console.log(longestZero("11111")); //  []
