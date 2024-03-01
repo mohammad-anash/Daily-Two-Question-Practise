@@ -1904,3 +1904,155 @@ function longestZero(string) {
 // console.log(longestZero("01100001011000")); //  [["0", "0", "0", "0"]]
 // console.log(longestZero("100100100")); //  [["0", "0"]]
 // console.log(longestZero("11111")); //  []
+
+// 74 => Given what is supposed to be typed and what is actually typed, write a function that returns the broken key(s). The function looks like:
+
+function findBrokenKeys(str1, str2) {
+  const uniqueElement = [];
+  for (let i = 0; i < str1.length; i++) {
+    if (str1[i] !== str2[i]) {
+      uniqueElement.push(str1[i]);
+    }
+  }
+  // return uniqueElement;
+}
+
+// console.log(findBrokenKeys("happy birthday", "hawwy birthday")); //  ["p"]
+// console.log(findBrokenKeys("starry night", "starrq light")); //  ["y", "n"]
+// console.log(findBrokenKeys("beethoven", "affthoif5")); //  ["b", "e", "v", "n"]
+
+// Second approch
+
+function findBrokenKeys(str1, str2) {
+  return str1.split("").filter((char) => !str2.includes(char));
+}
+
+// console.log(findBrokenKeys("happy birthday", "hawwy birthday")); //  ["p"]
+// console.log(findBrokenKeys("starry night", "starrq light")); //  ["y", "n"]
+// console.log(findBrokenKeys("beethoven", "affthoif5")); //  ["b", "e", "v", "n"]
+
+// 75 => Create a function that takes in an array (slot machine outcome) and returns true if all elements in the array are identical, and false otherwise. The array will contain 4 elements.
+
+function testJackpot(arr) {
+  for (let i = 0; i < arr.length - 1; i++) {
+    if (arr[i] !== arr[i + 1]) {
+      return false;
+    }
+  }
+  return true;
+}
+
+// console.log(testJackpot(["@", "@", "@", "@"])); //  true
+// console.log(testJackpot(["abc", "abc", "abc", "abc"])); //  true
+// console.log(testJackpot(["SS", "SS", "SS", "SS"])); //  true
+// console.log(testJackpot(["&&", "&", "&&&", "&&&&"])); //  false
+// console.log(testJackpot(["SS", "SS", "SS", "Ss"])); //  false
+
+// 76 => You have an array of integers, and for each index you want to find the product of every integer except the integer at that index.
+
+// Create a function that takes an array of integers and returns an array of the products.\
+
+function getProducts(arr) {
+  let product = 1;
+  let store = [];
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = 0; j < arr.length; j++) {
+      if (i === j) {
+        store.push(i);
+      } else {
+        product *= arr[j];
+      }
+    }
+    store[i] = product;
+    product = 1;
+  }
+  return store;
+}
+
+// console.log(getProducts([1, 7, 3, 4])); //  [84, 12, 28, 21]
+// console.log(getProducts([1, 2, 6, 5, 9])); //  [540, 270, 90, 108, 60]
+// console.log(getProducts([1, 2, 3, 0, 5])); //  [0, 0, 0, 30, 0]
+
+// 77 => Create a function that takes an array and finds the integer which appears an odd number of times.
+
+function findOdd(arr) {
+  if (arr.length <= 1) {
+    return arr;
+  }
+
+  let countObj = {};
+  arr.forEach((num) => {
+    if (countObj[num]) {
+      countObj[num]++;
+    } else {
+      countObj[num] = 1;
+    }
+  });
+  for (let key in countObj) {
+    if (countObj.hasOwnProperty(key)) {
+      if (countObj[key] % 2 !== 0) {
+        return parseInt(key);
+      }
+    }
+  }
+}
+
+// console.log(findOdd([1, 1, 2, -2, 5, 2, 4, 4, -1, -2, 5])); //  -1
+// console.log(findOdd([20, 1, 1, 2, 2, 3, 3, 5, 5, 4, 20, 4, 5])); //  5
+// console.log(findOdd([10])); //  10
+
+// function findOdd(arr) {
+//   const countOccurence = arr.reduce((prev, current) => {
+//     if (prev[current]) prev[current]++;
+//     else prev[current] = 1;
+//     return prev;
+//   }, {});
+
+//   for (const keys in countOccurence) {
+//     if (countOccurence[keys] % 2 !== 0) {
+//       return parseInt(keys);
+//     }
+//   }
+// }
+
+// console.log(findOdd([1, 1, 2, -2, 5, 2, 4, 4, -1, -2, 5])); //  -1
+// console.log(findOdd([20, 1, 1, 2, 2, 3, 3, 5, 5, 4, 20, 4, 5])); //  5
+// console.log(findOdd([10])); //  10
+
+// 78 => Create a function that takes a string as an argument and returns a coded (h4ck3r 5p34k) version of the string.
+
+function hackerSpeak(string) {
+  let newString = "";
+  for (let i = 0; i < string.length; i++) {
+    if (string[i] === "a") {
+      newString += string[i] = 4;
+    } else if (string[i] === "o") {
+      newString += string[i] = 0;
+    } else if (string[i] === "i") {
+      newString += string[i] = 1;
+    } else if (string[i] === "s") {
+      newString += string[i] = 5;
+    } else {
+      newString += string[i];
+    }
+  }
+  return newString;
+}
+
+// console.log(hackerSpeak("javascript is cool")); //  "j4v45cr1pt 15 c00l"
+// console.log(hackerSpeak("programming is fun")); //  "pr0gr4mm1ng 15 fun"
+// console.log(hackerSpeak("become a coder")); //  "b3c0m3 4 c0d3r"
+
+function hackerSpeak(string) {
+  const changeString = string
+    .replaceAll("a", "4")
+    .replaceAll("i", "1")
+    .replaceAll("o", "0")
+    .replaceAll("s", "5");
+
+  return changeString;
+}
+
+// console.log(hackerSpeak("javascript is cool")); //  "j4v45cr1pt 15 c00l"
+// console.log(hackerSpeak("programming is fun")); //  "pr0gr4mm1ng 15 fun"
+// console.log(hackerSpeak("become a coder")); //  "b3c0m3 4 c0d3r"
