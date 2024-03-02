@@ -2056,3 +2056,241 @@ function hackerSpeak(string) {
 // console.log(hackerSpeak("javascript is cool")); //  "j4v45cr1pt 15 c00l"
 // console.log(hackerSpeak("programming is fun")); //  "pr0gr4mm1ng 15 fun"
 // console.log(hackerSpeak("become a coder")); //  "b3c0m3 4 c0d3r"
+
+// 79 =>Create a function that takes an array of numbers and returns the number that's unique.
+
+function unique(arr) {
+  let obj = {};
+
+  arr.forEach((item) => {
+    if (obj[item]) obj[item]++;
+    else obj[item] = 1;
+  });
+
+  for (const keys in obj) {
+    if (obj[keys] === 1) {
+      return +keys;
+    }
+  }
+}
+
+// console.log(unique([3, 3, 3, 7, 3, 3])); // 7
+// console.log(unique([0, 0, 0.77, 0, 0])); // 0.77
+// console.log(unique([0, 1, 1, 1, 1, 1, 1, 1])); // 0
+
+// 80 => Create a function that takes a string as an argument and returns the Morse code equivalent.
+
+function encodeMorse(string) {}
+
+// console.log(encodeMorse("EDABBIT CHALLENGE")); //  ". -.. .- -... -... .. -   -.-. .... .- .-.. .-.. . -. --. ."
+// console.log(encodeMorse("HELP ME !")); //  ".... . .-.. .--.   -- .   -.-.--"
+
+// 81 => Create a function that takes an array of card numbers and checks if the sum of their value exceeds 21. If the sum exceeds 21, return true and if the sum is under or equal to 21, return false. Values of the cards are as follows:
+
+function overTwentyOne(arr) {
+  let totalValue = 0;
+  let numAces = 0;
+
+  arr.forEach((cards) => {
+    if (!isNaN(cards)) {
+      totalValue += parseInt(cards);
+    } else if (cards === "A") {
+      numAces++;
+    } else {
+      totalValue += 10;
+    }
+  });
+
+  for (let i = 0; i < numAces; i++) {
+    if (totalValue + 11 > 21) {
+      totalValue += 1;
+    } else {
+      totalValue += 11;
+    }
+  }
+  if (totalValue > 21) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+// console.log(overTwentyOne([2, 8, "J"])); //  false
+// console.log(overTwentyOne(["A", "J", "K"])); //  false
+// console.log(overTwentyOne([5, 5, 3, 9])); //  true
+// console.log(overTwentyOne([2, 6, 4, 4, 5])); //  false
+// console.log(overTwentyOne(["J", "Q", "K"])); //  true
+
+// 82 => A Sudoku is a 9x9 grid that is completed when every 3x3 square, row and column consists of the numbers 1-9.
+
+// For this task, you will be given a completed 3x3 square, in the form of a two-dimensional array. Create a function that checks to make sure this 3x3 square contains each number from 1-9 exactly once. Make sure there are no duplicates, and no numbers outside this range.
+
+function isMiniSudoku(arr) {
+  const inOneArr = arr.flat().sort((a, b) => a - b);
+
+  for (let i = 0; i < inOneArr.length; i++) {
+    if (inOneArr[i] !== i + 1) {
+      return false;
+    }
+  }
+  return true;
+}
+
+// console.log(
+//   isMiniSudoku([
+//     [1, 3, 2],
+//     [9, 7, 8],
+//     [4, 5, 6],
+//   ])
+// ); //  true
+
+// console.log(
+//   isMiniSudoku([
+//     [1, 1, 3],
+//     [6, 5, 4],
+//     [8, 7, 9],
+//   ])
+// ); //  false
+// // The 1 is repeated twice
+
+// console.log(
+//   isMiniSudoku([
+//     [0, 1, 2],
+//     [6, 4, 5],
+//     [9, 8, 7],
+//   ])
+// ); //  false
+// // The 0 is included (outside range)
+
+// console.log(
+//   isMiniSudoku([
+//     [8, 9, 2],
+//     [5, 6, 1],
+//     [3, 7, 4],
+//   ])
+// ); //  true
+
+// other Approch
+
+function isMiniSudoku(arr) {
+  const inOneArr = arr.flat().sort((a, b) => a - b);
+  for (let i = 0; i < inOneArr.length - 1; i++) {
+    if (inOneArr[i + 1] - inOneArr[i] !== 1) {
+      return false;
+    }
+  }
+  return true;
+}
+
+// console.log(
+//   isMiniSudoku([
+//     [1, 3, 2],
+//     [9, 7, 8],
+//     [4, 5, 6],
+//   ])
+// ); //  true
+
+// console.log(
+//   isMiniSudoku([
+//     [1, 1, 3],
+//     [6, 5, 4],
+//     [8, 7, 9],
+//   ])
+// ); //  false
+// // The 1 is repeated twice
+
+// console.log(
+//   isMiniSudoku([
+//     [0, 1, 2],
+//     [6, 4, 5],
+//     [9, 8, 7],
+//   ])
+// ); //  false
+// // The 0 is included (outside range)
+
+// console.log(
+//   isMiniSudoku([
+//     [8, 9, 2],
+//     [5, 6, 1],
+//     [3, 7, 4],
+//   ])
+// ); //  true
+
+// 83 => A number is left-heavy if the digits on the left side are larger than the digits on the right. It is right-heavy if the digits on the right side are larger than the digits on the left. Else, it is balanced.
+
+// Create a function that takes in an integer and classifies it into one of the three mutually exclusive categories: left, right or balanced. For inputs with an odd number of integers, ignore the fulcrum (the middle number).
+
+function seesaw(digits) {
+  const breakDigits = digits.toString().split("");
+  const inNumber = Math.floor(breakDigits.length / 2);
+  const firstNumber = parseInt(breakDigits.slice(0, inNumber).join(""));
+  const lastNumber = parseInt(breakDigits.slice(-inNumber).join(""));
+
+  if (firstNumber > lastNumber) {
+    return "left";
+  } else if (lastNumber > firstNumber) {
+    return "right";
+  } else {
+    return "balanced";
+  }
+}
+
+// console.log(seesaw(3449)); //  "right"   // since 34 < 49
+// console.log(seesaw(1143113)); //  "left"    // since 114 > 113 (3 is the fulcrum)
+// console.log(seesaw(585585)); //  "balanced"// since 585 == 585
+
+// 84 => Create a function that takes in an array of full names and returns the initials.
+
+function initialize(arr) {
+  let initial = [];
+  for (const names of arr) {
+    let newString = "";
+    const getfirstChar = names.split(" ");
+    for (const items of getfirstChar) {
+      newString += `${items.charAt(0)}. `;
+    }
+    initial.push(newString.trim());
+  }
+  return initial;
+}
+
+// console.log(initialize(["Stephen Hawking"])); //  ["S. H."]
+// console.log(initialize(["Harry Potter", "Ron Weasley"])); //  ["H. P.", "R. W."]
+// console.log(initialize(["Sherlock Holmes", "John Watson", "Irene Adler"])); //  ["S. H.", "J. W.", "I. A."]
+
+// other approch
+
+function initialize(arr) {
+  return arr.reduce((prev, current) => {
+    const getFirstChar = current
+      .toString()
+      .split(" ")
+      .map((names) => `${names.charAt(0)}. `)
+      .join(" ")
+      .trim();
+    return prev.concat(getFirstChar);
+  }, []);
+}
+
+// console.log(initialize(["Stephen Hawking"])); //  ["S. H."]
+// console.log(initialize(["Harry Potter", "Ron Weasley"])); //  ["H. P.", "R. W."]
+// console.log(initialize(["Sherlock Holmes", "John Watson", "Irene Adler"])); //  ["S. H.", "J. W.", "I. A."]
+
+// 85 => Create a function that takes an array and determines whether it's strictly increasing, strictly decreasing, or neither.
+
+function check(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] < arr[i + 1]) {
+      return "increasing";
+    } else if (arr[i] > arr[i + 1]) {
+      return "decreasing";
+    } else {
+      return "neither";
+    }
+  }
+}
+
+console.log(check([1, 2, 3])); //  "increasing"
+console.log(check([3, 2, 1])); //  "decreasing"
+console.log(check([1, 2, 1])); //  "neither"
+console.log(check([1, 1, 2])); //  "neither"
