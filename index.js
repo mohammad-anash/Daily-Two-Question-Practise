@@ -723,7 +723,7 @@ function countVowelConsonant(string) {
   };
 }
 
-// console.log(countVowelConsonant("my name is anash"));
+// console.log(countVowelConsonant("my names is anash"));
 
 // 34 => write a function to convert every first letter of word in capitalize;
 
@@ -737,7 +737,7 @@ function capitalize(string) {
   return newString;
 }
 
-// console.log(capitalize("my name is anash"));
+// console.log(capitalize("my names is anash"));
 
 // Second Appeoch with map
 
@@ -940,7 +940,7 @@ function medianValue(string) {
 // console.log(medianValue("application"));
 // console.log(medianValue("filter"));
 
-// 41 => write a function to find the multiple middle value in the array of name
+// 41 => write a function to find the multiple middle value in the array of names
 
 function multipleMiddle(arr) {
   let store = [];
@@ -1464,7 +1464,7 @@ function checkAllVowelPresentOrNot(sentence) {
 }
 
 // console.log(
-//   checkAllVowelPresentOrNot("my name is anash i want to be programmer")
+//   checkAllVowelPresentOrNot("my names is anash i want to be programmer")
 // );
 
 // 59 => wrtie a function to the given number is strong number or not
@@ -2279,18 +2279,291 @@ function initialize(arr) {
 // 85 => Create a function that takes an array and determines whether it's strictly increasing, strictly decreasing, or neither.
 
 function check(arr) {
-  for (let i = 0; i < arr.length; i++) {
-    if (arr[i] < arr[i + 1]) {
-      return "increasing";
-    } else if (arr[i] > arr[i + 1]) {
-      return "decreasing";
-    } else {
-      return "neither";
+  let increasing = true;
+  let decreasing = true;
+
+  for (let i = 0; i < arr.length - 1; i++) {
+    if (arr[i] >= arr[i + 1]) {
+      increasing = false;
     }
+    if (arr[i] <= arr[i + 1]) {
+      decreasing = false;
+    }
+  }
+
+  if (increasing) {
+    return "increasing";
+  } else if (decreasing) {
+    return "decreasing";
+  } else {
+    return "neither";
   }
 }
 
-console.log(check([1, 2, 3])); //  "increasing"
-console.log(check([3, 2, 1])); //  "decreasing"
-console.log(check([1, 2, 1])); //  "neither"
-console.log(check([1, 1, 2])); //  "neither"
+// console.log(check([1, 2, 3])); // "increasing"
+// console.log(check([3, 2, 1])); // "decreasing"
+// console.log(check([1, 2, 1])); // "neither"
+// console.log(check([1, 1, 2])); // "neither"
+
+// 86 => Create a function that takes a phrase and transforms each word using the following rules:
+
+// Keep first and last character the same.
+// Transform middle characters into a dash -.
+
+function partiallyHide(string) {
+  const breakString = string.split(" ");
+  let newString = "";
+
+  for (let i = 0; i < breakString.length; i++) {
+    let length = breakString[i].length - 1;
+    newString += `${breakString[i].charAt(0)}`;
+    newString += `${"-".repeat(breakString[i].slice(1, length).length)}`;
+    newString += `${breakString[i].charAt(length)}  `;
+  }
+  newString += " ";
+  return newString;
+}
+
+// console.log(partiallyHide("skies were pretty")); //  "s---s w--e p----y"
+// console.log(partiallyHide("red is not my color")); //  "r-d is n-t my c---r"
+// console.log(partiallyHide("She rolled her eyes")); //  "S-e r----d h-r e--s"
+// console.log(partiallyHide("Harry went to fight the basilisk")); //  "H---y w--t to f---t t-e b------k"
+
+// other approch
+
+function partiallyHide(string) {
+  return string.split(" ").reduce((prev, current) => {
+    prev += current.charAt(0);
+    prev += "-".repeat(current.slice(1, current.length - 1).length);
+    prev += current.charAt(current.length);
+
+    return prev;
+  }, "");
+}
+
+// console.log(partiallyHide("skies were pretty")); //  "s---s w--e p----y"
+// console.log(partiallyHide("red is not my color")); //  "r-d is n-t my c---r"
+// console.log(partiallyHide("She rolled her eyes")); //  "S-e r----d h-r e--s"
+// console.log(partiallyHide("Harry went to fight the basilisk")); //  "H---y w--t to f---t t-e b------k"
+
+// other approch
+
+function partiallyHide(string) {
+  let newString = "";
+  const breakString = string.split(" ");
+
+  for (const names of breakString) {
+    newString += names.charAt(0);
+    newString += "-".repeat(names.slice(0, names.length - 2).length);
+    newString += `${names.charAt(names.length - 1)} `;
+  }
+  return newString;
+}
+
+// console.log(partiallyHide("skies were pretty")); //  "s---s w--e p----y"
+// console.log(partiallyHide("red is not my color")); //  "r-d is n-t my c---r"
+// console.log(partiallyHide("She rolled her eyes")); //  "S-e r----d h-r e--s"
+// console.log(partiallyHide("Harry went to fight the basilisk")); //  "H---y w--t to f---t t-e b------k"
+
+// 87 => Create a function that counts the number of blocks of two or more adjacent 1s in an array.
+
+function countOnes(arr) {
+  let countBlocks = 0;
+  let currentBlockLength = 0;
+
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === 1) {
+      currentBlockLength++;
+    } else {
+      if (currentBlockLength >= 2) {
+        countBlocks++;
+      }
+      currentBlockLength = 0;
+    }
+  }
+
+  if (currentBlockLength >= 2) {
+    countBlocks++;
+  }
+  return countBlocks;
+}
+
+// console.log(countOnes([1, 0, 0, 1, 1, 0, 1, 1, 1])); //  2// Two instances: [1, 1] (middle) and [1, 1, 1] (end)
+// console.log(countOnes([1, 0, 1, 0, 1, 0, 1, 0])); //  0
+// console.log(countOnes([1, 1, 1, 1, 0, 0, 0, 0])); //  1
+// console.log(countOnes([0, 0, 0])); //  0
+
+// 88 =>  Create a function that keeps only strings with repeating identical characters (in other words, it has a set size of 1).
+
+// function identicalFilter(arr) {
+//   let store = [];
+
+//   for (let i = 0; i < arr.length; i++) {
+//     const word = arr[i].toString();
+//     let isIdentical = true;
+//     for (let j = 1; j < word.length; j++) {
+//       if (word[j] !== word[0]) {
+//         isIdentical = false;
+//         break;
+//       }
+//     }
+//     if (isIdentical) {
+//       store.push(word);
+//     }
+//   }
+//   return store;
+// }
+
+// console.log(identicalFilter(["aaaaaa", "bc", "d", "eeee", "xyz"])); //  ["aaaaaa", "d", "eeee"]
+// console.log(identicalFilter(["88", "999", "22", "545", "133"])); //  ["88", "999", "22"]
+// console.log(identicalFilter(["xxxxo", "oxo", "xox", "ooxxoo", "oxo"])); //  []
+// console.log(identicalFilter(["88", "999", "22"])); //  []
+
+// 89 => Write a function that moves all elements of one type to the end of the array.
+
+function moveToEnd(arr, target) {
+  let result = [];
+  let targetElement = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === target) {
+      targetElement.push(arr[i]);
+    } else {
+      result.push(arr[i]);
+    }
+  }
+
+  result = result.concat(targetElement);
+  return result;
+}
+
+// console.log(moveToEnd([1, 3, 2, 4, 4, 1], 1)); //  [3, 2, 4, 4, 1, 1]// Move all the 1s to the end of thearray.
+// console.log(moveToEnd([7, 8, 9, 1, 2, 3, 4], 9)); //  [7, 8, 1, 2, 3, 4, 9]
+// console.log(moveToEnd(["a", "a", "a", "b"], "a")); //  ["b", "a", "a", "a"]
+
+// 90 => Create a function that determines whether elements in an array can be re-arranged to form a consecutive list of numbers where each number appears exactly once.
+
+function cons(arr) {
+  const sortedArr = arr.sort((a, b) => a - b);
+  for (let i = 0; i < sortedArr.length - 1; i++) {
+    if (sortedArr[i + 1] - sortedArr[i] !== 1) {
+      return false;
+    } else if (sortedArr[i] - sortedArr[i + 1] === 0) {
+      return false;
+    }
+  }
+  return true;
+}
+
+// console.log(cons([5, 1, 4, 3, 2])); //  true// Can be re-arranged to form [1, 2, 3, 4, 5]
+// console.log(cons([5, 1, 4, 3, 2, 8])); //  false
+// console.log(cons([5, 6, 7, 8, 9, 9])); //  false// 9 appears twice
+
+// 91 => Create a function that divides a string into parts of size n.
+
+function partition(string, n) {
+  let store = [];
+  const firstElement = string.slice(0, n);
+  const lastElement = string.slice(n);
+
+  store.push(firstElement, lastElement);
+
+  return store;
+}
+
+// console.log(partition("chew", 2)); //  ["ch", "ew"]
+// console.log(partition("thematic", 4)); //  ["them", "atic"]
+// console.log(partition("c++", 2)); //  ["c+", "+"]
+
+// other approch
+
+function partition(string, n) {
+  let store = [];
+  for (let i = 0; i < string.length; i++) {
+    if (i < n) {
+      store.push(string[i]);
+    }
+  }
+  store.push(string.slice(n));
+  return store;
+}
+
+// console.log(partition("chew", 2)); //  ["ch", "ew"]
+// console.log(partition("thematic", 4)); //  ["them", "atic"]
+// console.log(partition("c++", 2)); //  ["c+", "+"]
+
+// 92 => Write a function that reverses the subarray between the start and end index (inclusive). The rest of the array should be kept the same.
+
+function rangedReversal(arr, firstIndex, SecondIndex) {
+  let store = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (i === firstIndex) {
+      store.push(arr[SecondIndex]);
+    } else if (i === SecondIndex) {
+      store.push(arr[firstIndex]);
+    } else {
+      store.push(arr[i]);
+    }
+  }
+  return store;
+}
+
+// console.log(rangedReversal([1, 2, 3, 4, 5, 6], 1, 3)); //  [1, 4, 3, 2, 5, 6]
+// console.log(rangedReversal([1, 2, 3, 4, 5, 6], 0, 4)); //  [5, 4, 3, 2, 1, 6]
+// console.log(rangedReversal([9, 8, 7, 4], 0, 0)); //  [9, 8, 7, 4]
+
+// 93 => Designing Rugs
+// Write a function that accepts the height and width (m, n) and an optional proc s and generates a list with m elements. Each element is a string consisting of either:
+
+// The default character (hash #) repeating n times (if no proc is given).
+// The character passed in through the proc repeating n times.
+// Examples
+
+function make_rug(firstloop, secondloop, rug) {
+  let newString = "";
+
+  for (let i = 0; i < firstloop; i++) {
+    for (let j = 0; j < secondloop; j++) {
+      newString += rug;
+    }
+    newString += "\n";
+  }
+  return newString;
+}
+
+// console.log(make_rug(3, 5, "#"));
+//  [
+// "#####",
+// "#####",
+// "#####"
+// ]
+// console.log(make_rug(3, 5, "$"));
+//  [
+// "$$$$$",
+// "$$$$$",
+// "$$$$$"
+// ]
+// console.log(make_rug(2, 2, "A"));
+//  [
+// "AA",
+// "AA"
+// ]
+//
+// Notes
+// You can set a value for the parameter when creating the function e.g. def func(x = 3)
+
+// other Approch
+
+function make_rug(firstloop, secondLoop, rug) {
+  let newString = "";
+
+  for (let i = 0; i < firstloop; i++) {
+    newString += rug.repeat(secondLoop);
+    newString += "\n";
+  }
+  return newString;
+}
+
+// console.log(make_rug(3, 5, "#"));
+// console.log(make_rug(3, 5, "$"));
+// console.log(make_rug(2, 2, "A"));
