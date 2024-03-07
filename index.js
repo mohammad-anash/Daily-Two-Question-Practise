@@ -2567,3 +2567,470 @@ function make_rug(firstloop, secondLoop, rug) {
 // console.log(make_rug(3, 5, "#"));
 // console.log(make_rug(3, 5, "$"));
 // console.log(make_rug(2, 2, "A"));
+
+// 94 => Sum of Missing Numbers
+// Create a function that returns the sum of missing numbers from the given list.
+
+// Examples
+
+// function sum_missing_numbers(arr) {
+//   const sortedArr = arr.sort((a, b) => a - b);
+//   const initiaValue = sortedArr[0];
+//   const finalValue = sortedArr[sortedArr.length - 1];
+//   let diffrentValue = [];
+
+//   for (let i = initiaValue; i < finalValue; i++) {
+//     console.log(sortedArr[i]);
+//   }
+// }
+// console.log(sum_missing_numbers([4, 3, 8, 1, 2])); //  18 // # 5 + 6 + 7 = 18
+// console.log(sum_missing_numbers([17, 16, 15, 10, 11, 12])); //  27 // # 13 + 14 = 27
+// console.log(sum_missing_numbers([1, 2, 3, 4, 5])); //  0
+// # No Missing Numbers (i.e. all numbers in [1, 5] are present in the list)
+// Notes
+// The numerical range to consider when searching for the missing numbers in the list is the sequence of consecutive numbers between the minimum and maximum of the numbers (inclusive).
+
+// 95 => Sum of List Elements Except Itself
+// A list is given. Return a new list having the sum of all its elements except itself. For more clarity, check the examples below.
+
+// Clarification;
+// [1, 2, 3, 4] = for first element => sum will be 2+3+4 = [9]
+// [1, 2, 3, 4] = for second element => sum will be 1+3+4 = [9, 8]
+// [1, 2, 3, 4] = for third element => sum will be 1+2+4 = [9, 8, 7]
+// [1, 2, 3, 4] = for fourth element => sum will be 1+2+3 = [9, 8, 7, 6]
+
+// Examples
+
+function lst_ele_sum(arr) {
+  let sum;
+  let storeSum = [];
+  for (let i = 0; i < arr.length; i++) {
+    sum = 0;
+    for (let j = 0; j < arr.length; j++) {
+      if (i !== j) {
+        sum += arr[j];
+      }
+    }
+    storeSum.push(sum);
+    sum = 0;
+  }
+  return storeSum;
+}
+
+// console.log(lst_ele_sum([1, 2, 3, 2, 1])); //  [8, 7, 6, 7, 8]
+// console.log(lst_ele_sum([1, 2])); //  [2, 1]
+// console.log(lst_ele_sum([1, 2, 3])); //  [5, 4, 3]
+// console.log(lst_ele_sum([1, 2, 3, 4, 5])); //  [14, 13, 12, 11, 10]
+// console.log(lst_ele_sum([10, 20, 30, 40, 50, 60])); //  [200, 190, 180, 170, 160, 150]
+
+// other approch
+
+function lst_ele_sum(arr) {
+  let storeSum = [];
+  let sum;
+
+  for (const number of arr) {
+    sum = 0;
+    for (const integer of arr) {
+      if (integer !== number) {
+        sum += integer;
+      }
+    }
+    storeSum.push(sum);
+    sum = 0;
+  }
+  return storeSum;
+}
+
+// console.log(lst_ele_sum([1, 2, 3, 2, 1])); //  [8, 7, 6, 7, 8
+// console.log(lst_ele_sum([1, 2])); //  [2, 1]
+// console.log(lst_ele_sum([1, 2, 3])); //  [5, 4, 3]
+// console.log(lst_ele_sum([1, 2, 3, 4, 5])); //  [14, 13, 12, 11, 10]
+// console.log(lst_ele_sum([10, 20, 30, 40, 50, 60])); //  [200, 190, 180, 170, 160, 150]
+
+// 96 => Missing Letters
+// Given a string containing unique letters, return a sorted string with the letters that don't appear in the string.
+
+function get_missing_letters(string) {
+  let letter = "abcedfghijklmnopqrstuvwxyz";
+  let newString = "";
+
+  for (let i = 0; i < letter.length; i++) {
+    if (!string.includes(letter[i])) {
+      newString += letter[i];
+    }
+  }
+  return newString;
+}
+
+// Examples
+// console.log(get_missing_letters("abcdefgpqrstuvwxyz")); // "hijklmno"
+// console.log(get_missing_letters("zyxwvutsrq")); // "abcdefghijklmnop"
+// console.log(get_missing_letters("abc")); // "defghijklmnopqrstuvwxyz"
+// console.log(get_missing_letters("abcdefghijklmnopqrstuvwxyz")); // ""
+
+// other approch
+
+function get_missing_letters(string) {
+  let letter = "abcdefghijklmnopqrstuvwxyz";
+  return letter
+    .split("")
+    .filter((char) => !string.includes(char))
+    .join("");
+}
+
+// console.log(get_missing_letters("abcdefgpqrstuvwxyz")); // "hijklmno"
+// console.log(get_missing_letters("zyxwvutsrq")); // "abcdefghijklmnop"
+// console.log(get_missing_letters("abc")); // "defghijklmnopqrstuvwxyz"
+// console.log(get_missing_letters("abcdefghijklmnopqrstuvwxyz")); // ""
+
+// other approch
+function get_missing_letters(string) {
+  const initialValue = "a".charCodeAt();
+  const finalValue = "z".charCodeAt();
+  const alphabet = [];
+
+  for (let i = initialValue; i <= finalValue; i++) {
+    alphabet.push(String.fromCharCode(i));
+  }
+  const missingLetters = alphabet.filter((letter) => !string.includes(letter));
+
+  return missingLetters.join("");
+}
+
+// console.log(get_missing_letters("abcdefgpqrstuvwxyz")); // "hijklmno"
+// console.log(get_missing_letters("zyxwvutsrq")); // "abcdefghijklmnop"
+// console.log(get_missing_letters("abc")); // "defghijklmnopqrstuvwxyz"
+// console.log(get_missing_letters("abcdefghijklmnopqrstuvwxyz")); // ""
+
+// 97 => Censor Words Longer Than Four Characters
+// Create a function that takes a string and censors words over four characters with *.
+
+function censor(string) {
+  let newString = "";
+
+  const breakString = string.split(" ");
+
+  for (let i = 0; i < breakString.length; i++) {
+    if (breakString[i].length > 4) {
+      newString += `${"*".repeat(breakString[i].length)} `;
+    } else {
+      newString += `${breakString[i]} `;
+    }
+  }
+  return newString;
+}
+
+// Examples;
+// console.log(censor("The code is fourty")); //  "The code is ******"
+// console.log(censor("Two plus three is five")); //  "Two plus ***** is five"
+// console.log(censor("aaaa aaaaa 1234 12345")); //  "aaaa ***** 1234 *****"
+// Notes
+// Don't censor words with exactly four characters.
+// If all words have four characters or less, return the original string.
+// // The amount of * is the same as the length of the word.
+
+// other approch
+
+function censor(string) {
+  return string
+    .split(" ")
+    .map((words) => (words.length > 4 ? "*".repeat(words.length) : words))
+    .join(" ");
+}
+
+// console.log(censor("The code is fourty"));
+// console.log(censor("Two plus three is five"));
+// console.log(censor("aaaa aaaaa 1234 12345"));
+
+function censor(string) {
+  return string.split(" ").reduce((prev, current) => {
+    if (current.length > 4) {
+      prev += `${"*".repeat(current.length)} `;
+    } else {
+      prev += `${current} `;
+    }
+    return prev;
+  }, "");
+}
+
+// console.log(censor("The code is fourty"));
+// console.log(censor("Two plus three is five"));
+// console.log(censor("aaaa aaaaa 1234 12345"));
+
+// 98 => Accumulating List
+// Create a function that takes in a list and returns a list of the accumulating sum.
+
+function accumulating_list(arr) {
+  let sum = 0;
+  let accumulatingSum = [];
+  arr.forEach((nums) => {
+    sum += nums;
+    accumulatingSum.push(sum);
+  });
+  return accumulatingSum;
+}
+
+// console.log(accumulating_list([1, 2, 3, 4])); //  [1, 3, 6, 10]// # [1, 3, 6, 10] can be written as  [1, 1 + 2, 1 + 2 + 3, 1 + 2 + 3 + 4]
+// console.log(accumulating_list([1, 5, 7])); //  [1, 6, 13]
+// console.log(accumulating_list([1, 0, 1, 0, 1])); //  [1, 1, 2, 2, 3]
+// console.log(accumulating_list([])); //  []
+// Notes
+// An empty list input [] should return an empty list [].
+
+function accumulating_list(arr) {
+  let accumulatingSum = [];
+  let sum = 0;
+
+  for (const nums of arr) {
+    sum += nums;
+    accumulatingSum.push(sum);
+  }
+  return accumulatingSum;
+}
+
+// console.log(accumulating_list([1, 2, 3, 4]));
+// console.log(accumulating_list([1, 5, 7]));
+// console.log(accumulating_list([1, 0, 1, 0, 1]));
+// console.log(accumulating_list([]));
+
+// 99 =>  Find The Largest Even Number
+// Write a function that finds the largest even number in a list. Return -1 if not found. The use of built-in functions max() and sorted() are prohibited.
+
+// Examples
+
+function largest_even(arr) {
+  const storeEvenNumber = [];
+  return arr
+    .filter((nums) => (nums % 2 === 0 ? storeEvenNumber.push(nums) : -1))
+    .reduce((max, current) => {
+      if (current > max) {
+        max = current;
+      }
+      return `largest even number in the array${max}`;
+    }, 0);
+}
+// console.log(largest_even([3, 7, 2, 1, 7, 9, 10, 13])); //  10
+// console.log(largest_even([1, 3, 5, 7])); //  -1
+// console.log(largest_even([0, 19, 18973623])); //  0
+
+// other approch
+
+function largest_even(arr) {
+  const EvenNumber = [];
+  for (let i = 0; i < arr.length; i += 2) {
+    if (arr[i] % 2 === 0) EvenNumber.push(arr[i]);
+    else EvenNumber.push(-1);
+  }
+  const maxEvenNumber = Math.max(...EvenNumber);
+  return maxEvenNumber;
+}
+
+// console.log(largest_even([3, 7, 2, 1, 7, 9, 10, 13])); //  10
+// console.log(largest_even([1, 3, 5, 7])); //  -1
+// console.log(largest_even([0, 19, 18973623])); //  0
+
+// 100 => Basic Statistics: Median
+// The median of a group of numbers is the middle number when the group is sorted. If the size of the group is even, the median is the average of the middle two numbers. Given a sorted list of numbers, return the median (rounded to one decimal place if the median isn't an integer).
+
+function median(arr) {
+  const arrLength = arr.length;
+  const medianIndex = Math.floor(arrLength / 2);
+
+  if (arrLength % 2 === 0) {
+    return (arr[medianIndex - 1] + arr[medianIndex]) / 2;
+  } else {
+    return arr[medianIndex];
+  }
+}
+
+// Examples
+// console.log(median([1, 2, 4, 5, 6, 8, 8, 8, 10])); // 6
+// console.log(median([2, 2, 6, 8, 8, 10, 10])); // 8
+// console.log(median([1, 2, 2, 4, 7, 8, 9, 10])); // 4.5
+
+// 101=> Return Duplicate Numbers
+// Given a list nums where each integer is between 1 and 100, return a sorted list containing only duplicate numbers from the given nums list.
+
+function duplicate_nums(arr) {
+  let obj = {};
+  const duplicateElement = [];
+
+  arr.forEach((number) => {
+    if (obj[number]) obj[number]++;
+    else obj[number] = 1;
+  });
+
+  for (const keys in obj) {
+    if (obj[keys] >= 2) {
+      duplicateElement.push(keys);
+    }
+  }
+  return duplicateElement.length === 0 ? "none" : duplicateElement;
+}
+
+// console.log(duplicate_nums([1, 2, 3, 4, 3, 5, 6])); //  [3]
+// console.log(duplicate_nums([81, 72, 43, 72, 81, 99, 99, 100, 12, 54])); //  [72, 81, 99]
+// console.log(duplicate_nums([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])); //  None
+
+// Notes
+// The given list won't contain the same number three times.
+// If there are no duplicate numbers, return None.
+
+// 102 =>  Two Sum
+// Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
+// You may assume that each input would have exactly one solution, and you may not use the same element twice.
+// You can return the answer in any order.
+
+function getTarget(arr, target) {
+  let indexes = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] + arr[i + 1] === target) {
+      indexes.push(i, i + 1);
+    }
+  }
+  return indexes;
+}
+
+// console.log(getTarget([2, 7, 11, 15], 9));
+// console.log(getTarget([3, 2, 4], 6));
+// console.log(getTarget([3, 3], 6));
+
+// Example 1:
+// Input: nums = [2,7,11,15], target = 9
+// Output: [0,1]
+// Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
+
+// Example 2:
+// Input: nums = [3,2,4], target = 6
+// Output: [1,2]
+// Example 3:
+
+// Input: nums = [3,3], target = 6
+// Output: [0,1]
+
+// 103 => Write a function that takes two arrays and adds the first element in the first array with the first element in the second array, the second element in the first array with the second element in the second array, etc, etc. Return true if all element combinations add up to the same number. Otherwise, return false.
+
+function puzzlePieces(arr1, arr2) {
+  if (arr1.length !== arr2.length) {
+    return false;
+  }
+
+  let storeSum = [];
+  for (let i = 0; i < arr1.length; i++) {
+    storeSum.push(arr1[i] + arr2[i]);
+  }
+  const firstNumber = storeSum[0];
+  return storeSum.every((char) => firstNumber === char);
+}
+
+// console.log(puzzlePieces([1, 2, 3, 4], [4, 3, 2, 1])); //  true
+// // 1 + 4 = 5;  2 + 3 = 5;  3 + 2 = 5;  4 + 1 = 5
+// // Both arrays sum to [5, 5, 5, 5]
+// console.log(puzzlePieces([1, 8, 5, 0, -1, 7], [0, -7, -4, 1, 2, -6])); //  true
+// console.log(puzzlePieces([1, 2], [-1, -1])); //  false
+// console.log(puzzlePieces([9, 8, 7], [7, 8, 9, 10])); //  false
+
+// 104 => The median of a group of numbers is the middle number when the group is sorted. If the size of the group is even, the median is the average of the middle two numbers. Given a sorted array of numbers, return the median (rounded to one decimal place if the median isn't an integer).
+
+function median(arr) {
+  const arrLength = arr.length;
+  const medianIndex = Math.floor(arrLength / 2);
+
+  if (arrLength % 2 === 0) {
+    return (arr[medianIndex - 1] + arr[medianIndex]) / 2;
+  } else {
+    return arr[medianIndex];
+  }
+}
+
+// console.log(median([1, 2, 4, 5, 6, 8, 8, 8, 10])); //  6
+// console.log(median([2, 2, 6, 8, 8, 10, 10])); //  8
+// console.log(median([1, 2, 2, 4, 7, 8, 9, 10])); //  5.5
+
+// 105 => Each number in the Perrin sequence is created by summing the numbers two positions and three positions before it. The first three numbers are (3, 0, 2), and the sequence is extended as follows:
+
+function perrin(n) {
+  var p = [3, 0, 2];
+
+  for (var i = 3; i <= n; i++) {
+    p[i] = p[i - 2] + p[i - 3];
+  }
+
+  return p[n];
+}
+
+// console.log(perrin(1)); // Output: 0
+// console.log(perrin(8)); // Output: 10
+// console.log(perrin(26)); // Output: 1497
+
+// 106 => Given an array of integers, find the pair of adjacent elements that have the largest product and return that product.
+
+function adjacentProduct(arr) {
+  let storeProduct = [];
+
+  for (let i = 0; i < arr.length - 1; i++) {
+    storeProduct.push(arr[i] * arr[i + 1]);
+  }
+  let firstElement = storeProduct[0];
+  for (const number of storeProduct) {
+    if (firstElement < number) {
+      firstElement = number;
+    }
+  }
+  return `largest adjacent product in the array (pair) => ${firstElement}`;
+}
+
+// console.log(adjacentProduct([3, 6, -2, -5, 7, 3])); //  21
+// console.log(adjacentProduct([5, 6, -4, 2, 3, 2, -23])); //  30
+// console.log(adjacentProduct([0, -1, 1, 24, 1, -4, 8, 10])); //  80
+
+// other approch
+
+function adjacentProduct(arr) {
+  const pairProduct = arr.reduce((storeProduct, current, index, array) => {
+    const product = array[index] * array[index + 1];
+    storeProduct.push(product);
+    return storeProduct;
+  }, []);
+
+  pairProduct.pop();
+  const largestAdjacentProduct = Math.max(...pairProduct);
+  return `largest adjacent element in the array (pair) => ${largestAdjacentProduct}`;
+}
+
+// console.log(adjacentProduct([3, 6, -2, -5, 7, 3])); //  21
+// console.log(adjacentProduct([5, 6, -4, 2, 3, 2, -23])); //  30
+// console.log(adjacentProduct([0, -1, 1, 24, 1, -4, 8, 10])); //  80
+
+// 107 => Create a function that returns the amount of duplicate characters in a string. It will be case sensitive and spaces are included. If there are no duplicates, return 0.
+
+function duplicates(string) {
+  let obj = {};
+  const storeValue = [];
+
+  string.split("").forEach((char) => {
+    if (obj[char]) obj[char]++;
+    else obj[char] = 1;
+  });
+  for (const keys in obj) {
+    if (obj[keys] >= 2) {
+      storeValue.push(obj[keys]);
+    }
+  }
+  return storeValue.reduce((sum, current) => {
+    const decreaseValue = current - 1;
+    sum += decreaseValue;
+    return sum;
+  }, 0);
+}
+
+console.log(duplicates("Hello World!")); //  3
+// "o" = 2, "l" = 3.
+// "o" is duplicated 1 extra time and "l" is duplicated 2 extra times.
+// Hence 1 + 2 = 3
+console.log(duplicates("foobar")); //  1
+console.log(duplicates("helicopter")); //  1
+console.log(duplicates("birthday")); //  0
+// If there are no duplicates, return 0
