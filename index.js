@@ -3026,11 +3026,93 @@ function duplicates(string) {
   }, 0);
 }
 
-console.log(duplicates("Hello World!")); //  3
-// "o" = 2, "l" = 3.
-// "o" is duplicated 1 extra time and "l" is duplicated 2 extra times.
-// Hence 1 + 2 = 3
-console.log(duplicates("foobar")); //  1
-console.log(duplicates("helicopter")); //  1
-console.log(duplicates("birthday")); //  0
-// If there are no duplicates, return 0
+// console.log(duplicates("Hello World!")); //  3
+// // "o" = 2, "l" = 3.
+// // "o" is duplicated 1 extra time and "l" is duplicated 2 extra times.
+// // Hence 1 + 2 = 3
+// console.log(duplicates("foobar")); //  1
+// console.log(duplicates("helicopter")); //  1
+// console.log(duplicates("birthday")); //  0
+// // If there are no duplicates, return 0
+
+// 108 => Given a string, create a function which outputs an array, building and deconstructing the string letter by letter. See the examples below for some helpful guidance.
+
+function constructDeconstruct(string) {
+  let newString = "";
+
+  for (let i = 1; i <= string.length; i++) {
+    for (let j = 0; j < i; j++) {
+      newString += string[j];
+    }
+    newString += "\n";
+  }
+
+  for (let k = string.length; k > 0; k--) {
+    for (let l = 0; l < k; l++) {
+      newString += string[l];
+    }
+    newString += "\n";
+  }
+
+  return newString;
+}
+
+// console.log(constructDeconstruct("Hello"));
+
+//   "H",
+//   "He",
+//   "Hel",
+//   "Hell",
+//   "Hello",
+//   "Hell",
+//   "Hel",
+//   "He",
+//   "H"
+// ]
+
+// console.log(constructDeconstruct("edabit"));
+//  [
+// "e",
+// "ed",
+// "eda",
+// "edab",
+// "edabi",
+// "edabit",
+// "edabi",
+// "edab",
+// "eda",
+// "ed",
+// "e"
+// ]
+
+// console.log(constructDeconstruct("the sun"));
+//  [
+//   "t",
+//   "th",
+//   "the",
+//   "the ",
+//   "the s",
+//   "the su",
+//   "the sun",
+//   "the su",
+//   "the s",
+//   "the ",
+//   "the",
+//   "th",
+//   "t"
+// ]
+
+// 109 => Create a function that builds a word from the scrambled letters contained in the first array. Use the second array to establish each position of the letters in the first array. Return a string from the unscrambled letters (that made-up the word).
+
+function wordBuilder(letter, number) {
+  let newString = "";
+
+  for (let i = 0; i < number.length; i++) {
+    newString += letter[number[i]];
+  }
+  return newString;
+}
+
+console.log(wordBuilder(["g", "e", "o"], [1, 0, 2])); //  "ego"
+console.log(wordBuilder(["e", "t", "s", "t"], [3, 0, 2, 1])); //  "test"
+console.log(wordBuilder(["b", "e", "t", "i", "d", "a"], [1, 4, 5, 0, 3, 2])); //  "edabit"
