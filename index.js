@@ -3113,6 +3113,89 @@ function wordBuilder(letter, number) {
   return newString;
 }
 
-console.log(wordBuilder(["g", "e", "o"], [1, 0, 2])); //  "ego"
-console.log(wordBuilder(["e", "t", "s", "t"], [3, 0, 2, 1])); //  "test"
-console.log(wordBuilder(["b", "e", "t", "i", "d", "a"], [1, 4, 5, 0, 3, 2])); //  "edabit"
+// console.log(wordBuilder(["g", "e", "o"], [1, 0, 2])); //  "ego"
+// console.log(wordBuilder(["e", "t", "s", "t"], [3, 0, 2, 1])); //  "test"
+// console.log(wordBuilder(["b", "e", "t", "i", "d", "a"], [1, 4, 5, 0, 3, 2])); //  "edabit"
+
+// 110 => Create a function which takes in an array of numbers and a number to find. Return the sum of every index in the array which matches the chosen number.
+
+function sumFoundIndexes(arr, matchValue) {
+  let sum = 0;
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === matchValue) {
+      sum += i;
+    }
+  }
+  return sum;
+}
+
+// console.log(sumFoundIndexes([0, 3, 3, 0, 0, 3], 3));
+// // The number 3 was found at indexes 1, 2 and 5.
+// // 8 = 1 + 2 + 5
+// console.log(sumFoundIndexes([1, 2, 3, 4, 5, 6], 3));
+// console.log(sumFoundIndexes([100, 100, 100, 100, 100], 100));
+// console.log(sumFoundIndexes([5, 10, 15, 20], 2));
+
+// other approch
+
+function sumFoundIndexes(arr, matchValue) {
+  const indexes = arr
+    .map((element, index) => (element === matchValue ? index : -1))
+    .filter((index) => index !== -1);
+
+  return indexes.reduce((sum, current) => sum + current, 0);
+}
+
+// console.log(sumFoundIndexes([0, 3, 3, 0, 0, 3], 3));
+// // The number 3 was found at indexes 1, 2 and 5.
+// // 8 = 1 + 2 + 5
+// console.log(sumFoundIndexes([1, 2, 3, 4, 5, 6], 3));
+// console.log(sumFoundIndexes([100, 100, 100, 100, 100], 100));
+// console.log(sumFoundIndexes([5, 10, 15, 20], 2));
+
+// 111 => In this challenge you will be given an array of numbers. Your task is to "marry" each pair of adjacent numbers by adding them, and return the array of "couples" (i.e. sums).
+// If the array has an odd length, one number is (sadly) left out, so you should return "bad match".
+
+function isGoodMatch(arr) {
+  let coupleStore = [];
+  let sum;
+  for (let i = 0; i < arr.length - 1; i += 2) {
+    if (arr.length % 2 === 0) {
+      sum = arr[i] + arr[i + 1];
+    } else {
+      return "bad match";
+    }
+    coupleStore.push(sum);
+  }
+  return coupleStore;
+}
+
+// console.log(isGoodMatch([1, 2, 4, 7])); //  [1+2, 4+7] //  [3, 11]
+// console.log(isGoodMatch([5, 7, 9, -1, 4, 2])); //  [12, 8, 6]
+// console.log(isGoodMatch([5, 7, 9, -1, 4, 2, 3])); //  "bad match"
+// console.log(isGoodMatch([2, 6, 7, -2, 4])); //  "bad match"
+
+// other approch
+
+function isGoodMatch(arr) {
+  let n = arr.length;
+  let sum;
+
+  if (n % 2 !== 0) {
+    return "bad match";
+  }
+  return arr.reduce((couples, currentValue, index, array) => {
+    if (index % 2 === 0) {
+      sum = currentValue + array[index + 1];
+
+      couples.push(sum);
+    }
+    return couples;
+  }, []);
+}
+
+// Test cases
+console.log(isGoodMatch([1, 2, 4, 7])); //  [1+2, 4+7] //  [3, 11]
+console.log(isGoodMatch([5, 7, 9, -1, 4, 2])); //  [12, 8, 6]
+console.log(isGoodMatch([5, 7, 9, -1, 4, 2, 3])); //  "bad match"
+console.log(isGoodMatch([2, 6, 7, -2, 4])); //  "bad match"
