@@ -77,14 +77,14 @@ function isPalindrom(sentence) {
 
 // 5=>  write a function to find the factorial of the given number
 
-function factorial(n) {
-  let product = 1;
+// function factorial(n) {
+//   let product = 1;
 
-  for (let i = 1; i < n; i++) {
-    product *= i;
-  }
-  return product;
-}
+//   for (let i = 1; i < n; i++) {
+//     product *= i;
+//   }
+//   return product;
+// }
 
 // console.log(factorial(6));
 
@@ -115,33 +115,33 @@ function averageOfArr(arr) {
 
 // 8 => write a function to generate a fabonanci Series
 
-function fabonanciSeries(n) {
-  let arr = [0, 1];
+// function fabonanciSeries(n) {
+//   let arr = [0, 1];
 
-  for (let i = 2; i <= n; i++) {
-    arr.push(arr[i - 2] + arr[i - 1]);
-  }
-  return arr;
-}
+//   for (let i = 2; i <= n; i++) {
+//     arr.push(arr[i - 2] + arr[i - 1]);
+//   }
+//   return arr;
+// }
 
-// console.log(fabonanciSeries(5));
+// console.log(fabonanciSeries(4));
 
 // 9 => write a function to find the duplicate numbers in the array
 
-function findDuplicate(arr) {
-  let obj = {};
+// function findDuplicate(arr) {
+//   let obj = {};
 
-  for (let i = 0; i < arr.length; i++) {
-    if (obj[arr[i]]) obj[arr[i]]++;
-    else obj[arr[i]] = 1;
-  }
+//   for (let i = 0; i < arr.length; i++) {
+//     if (obj[arr[i]]) obj[arr[i]]++;
+//     else obj[arr[i]] = 1;
+//   }
 
-  let store = [];
-  for (const keys in obj) {
-    if (obj[keys] >= 2) store.push(+keys);
-  }
-  return store;
-}
+//   let store = [];
+//   for (const keys in obj) {
+//     if (obj[keys] >= 2) store.push(+keys);
+//   }
+//   return store;
+// }
 
 // console.log(findDuplicate([1, 2, 3, 4, 2, 4, 3, 5, 4]));
 
@@ -232,7 +232,7 @@ function generateTable(n) {
   }
 }
 
-// console.log(generateTable(5));
+//console.log(generateTable(5));
 
 // 16 => write a function to check the given string in palimdrom or not
 
@@ -262,7 +262,7 @@ function binarySearch(arr, n) {
   return false;
 }
 
-// console.log(binarySearch([1, 2, 3, 4, 5], 5));
+//console.log(binarySearch([1, 2, 3, 4, 5], 5));
 
 // 18 => write a function to reverse a number using while loop
 
@@ -3195,7 +3195,103 @@ function isGoodMatch(arr) {
 }
 
 // Test cases
-console.log(isGoodMatch([1, 2, 4, 7])); //  [1+2, 4+7] //  [3, 11]
-console.log(isGoodMatch([5, 7, 9, -1, 4, 2])); //  [12, 8, 6]
-console.log(isGoodMatch([5, 7, 9, -1, 4, 2, 3])); //  "bad match"
-console.log(isGoodMatch([2, 6, 7, -2, 4])); //  "bad match"
+// console.log(isGoodMatch([1, 2, 4, 7])); //  [1+2, 4+7] //  [3, 11]
+// console.log(isGoodMatch([5, 7, 9, -1, 4, 2])); //  [12, 8, 6]
+// console.log(isGoodMatch([5, 7, 9, -1, 4, 2, 3])); //  "bad match"
+// console.log(isGoodMatch([2, 6, 7, -2, 4])); //  "bad match"
+
+// // 112 => You have a pack of 5 randomly numbered cards, which can range from 0-9. You can win if you can produce a higher two-digit number from your cards than your opponent. Return true if your cards win that round.
+
+// function winRound(arr, myOpponent) {}
+
+// console.log(winRound([2, 5, 2, 6, 9], [3, 7, 3, 1, 2])); //  true
+// Your cards can make the number 96
+// Your opponent can make the number 73
+// You win the round since 96 > 73
+// console.log(winRound([2, 5, 2, 6, 9], [3, 7, 3, 1, 2])); //  true
+// console.log(winRound([1, 2, 3, 4, 5], [9, 8, 7, 6, 5])); //  false
+// console.log(winRound([4, 3, 4, 4, 5], [3, 2, 5, 4, 1])); //  false
+
+// 113 => For an array of ranges, find the maximum range that is contained in all the ranges. If there is no such range, return "No overlapping".
+
+// console.log(overlapping([[1, 7], [2, 8], [0, 4]])) //  [2, 4]
+// console.log(overlapping([[5, 10], [2, 15], [10, 12]])) //  [10, 10]
+// console.log(overlapping([[11, 18], [3, 7], [2, 20], [5, 16]])) //  "No overlapping"
+
+// 114 => write function to generate fabonanci series with reduce method
+
+// const fabSeriesGenerate = (n) => {
+//   let num = 2;
+//   return Array.from({ length: n }).reduce(
+//     (arr, _, index, array) => {
+//       const addValue = (arr[num - 1]) + (arr[num - 2]);
+//       arr.push(addValue);
+//       num++;
+//       return arr;
+//     },
+//     [1, 2]
+//   );
+// };
+
+// console.log(fabSeriesGenerate(5));
+
+// with for loop
+function fabSeries(n) {
+  if (n === 0) return [0];
+  if (n === 1) return [0, 1];
+
+  let arr = [0, 1];
+  for (let i = 2; i < n; i++) {
+    arr.push(arr[i - 1] + arr[i - 2]);
+  }
+  return arr;
+}
+
+// console.log(fabSeries(10));
+
+// 115 => If we list all the natural numbers below that are multiples of or, we get and. The sum of these multiples is .
+
+// const naturalNumber = (n) => {
+//   const naturalNumberStore = [];
+//   for (let i = 1; i < n; i++) {
+//     if (i % 3 === 0 || i % 5 === 0) {
+//       naturalNumberStore.push(i);
+//     }
+//   }
+//   return naturalNumberStore.reduce((sum, current) => sum + current)
+// };
+// console.log(naturalNumber(10));
+
+const naturalNumber = (n) => {
+  let sum = 0;
+  for (let i = 1; i < n; i++) {
+    if (i % 3 === 0 || i % 5 === 0) {
+      sum += i;
+    }
+  }
+  return sum;
+};
+// console.log(naturalNumber(10));
+
+// 116 =>  Each new term in the Fibonacci sequence is generated by adding the previous two terms. By starting with
+//  and
+// , the first
+//  terms will be:
+
+// By considering the terms in the Fibonacci sequence whose values do not exceed four million, find the sum of the even-valued terms.
+
+const evenFibonacciNumbers = (n) => {
+  const arr = [1, 2];
+
+  for (let i = 2; i < n; i++) {
+    arr.push(arr[i - 1] + arr[i - 2]);
+  }
+  return arr.reduce((sum, current) => {
+    if (current % 2 === 0) {
+      sum += current;
+    }
+    return sum;
+  }, 0);
+};
+
+// console.log(evenFibonacciNumbers(10));
