@@ -3295,3 +3295,85 @@ const evenFibonacciNumbers = (n) => {
 };
 
 // console.log(evenFibonacciNumbers(10));
+
+// 117 => 13 => Sum of Missing Numbers
+// Create a function that returns the sum of missing numbers from the given list.
+
+// Examples
+// sum_missing_numbers([4, 3, 8, 1, 2]) //  18
+//
+// # 5 + 6 + 7 = 18
+
+// sum_missing_numbers([17, 16, 15, 10, 11, 12]) //  27
+//
+// # 13 + 14 = 27
+
+// sum_missing_numbers([1, 2, 3, 4, 5]) //  0
+//
+// # No Missing Numbers (i.e. all numbers in [1, 5] are present in the list)
+// Notes
+// The numerical range to consider when searching for the missing numbers in the list is the sequence of consecutive numbers between the minimum and maximum of the numbers (inclusive).
+function sum_missing_numbers(arr) {
+  let min = Math.min(...arr);
+  let max = Math.max(...arr);
+  let missing = 0;
+  for (let i = min; i <= max; i++) {
+    if (!arr.includes(i)) {
+      missing += i;
+    }
+  }
+  return missing;
+}
+
+// console.log(sum_missing_numbers([4, 3, 8, 1, 2])); // //  18//
+// console.log(sum_missing_numbers([17, 16, 15, 10, 11, 12])); // //  27//
+// console.log(sum_missing_numbers([1, 2, 3, 4, 5])); // //  0//
+
+// 118 => Create a function that takes two numbers as arguments (num, length) and returns a list of multiples of num until the list length reaches length.
+
+function list_of_multiples(a, b) {
+  const table = [];
+  for (let i = 1; i <= b; i++) {
+    table.push(a * i);
+  }
+  return table;
+}
+
+// Examples
+// console.log(list_of_multiples(7, 5)); // //  [7, 14, 21, 28, 35]
+// console.log(list_of_multiples(12, 10)); // //  [12, 24, 36, 48, 60, 72, 84, 96, 108, 120]
+// console.log(list_of_multiples(17, 6)); // //  [17, 34, 51, 68, 85, 102]
+
+// Notes
+// Notice that num is also included in the returned list.
+
+// 119 => Create a function that takes two inputs: idx (an array of integers) and str (a string). The function should return another string with the letters of str at each index in idx in order.
+function indexFilter(arr, string) {
+  let newLetter = "";
+
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] >= 0) {
+      newLetter += string.charAt(arr[i]).toLowerCase();
+    } else {
+      // Handle negative indices by adjusting them to positive indices
+      newLetter += string.charAt(string.length + arr[i]).toLowerCase();
+    }
+  }
+  return newLetter;
+}
+
+// Examples
+console.log(indexFilter([7, -1, 5, 1], "She is the love of my love")); // Output: "tesh"
+console.log(
+  indexFilter([4, -7, -13, -11, -2, 0], "Relax and stay calm to avoid failures")
+); // Output: "xavier"
+console.log(
+  indexFilter(
+    [9, -9, 2, 27, 36, 6, 5, 13, -1, 2, 0, 30, 2],
+    "That's life, I've got you under my skin"
+  )
+);
+//  "frank sinatra"
+// Notes
+// Indexes may not be in order or may be negative (see examples).
+// The output string must always be lowercase, but the input str may not be (as in the above examples).
