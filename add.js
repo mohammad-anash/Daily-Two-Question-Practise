@@ -334,4 +334,128 @@ function longestWord(string) {
   );
 }
 
-console.log(longestWord("i love coding javascript"))
+// console.log(longestWord("i love coding javascript"))
+
+// 128 => write a function take a string in input remove all space from string and cnvert in capital letter
+
+function removeSpaceCapitalizeString(string) {
+  let updateString = "";
+  const breakString = string.split(" ");
+  for (let i = 0; i < breakString.length; i++) {
+    const getFirstletter =
+      breakString[i].charAt(0).toUpperCase() + breakString[i].slice(1);
+    updateString += getFirstletter;
+  }
+  // return updateString;
+}
+
+// console.log(removeSpaceCapitalizeString("my name is anash"));\
+
+// other approch
+
+function removeSpaceCapitalizeString(string) {
+  // return string.split(" ").map((words) => words.charAt(0).toUpperCase() + words.slice(1)).join("")
+}
+
+// console.log(removeSpaceCapitalizeString("my name is anash"));
+
+// one more other approch
+
+function removeSpaceCapitalizeString(inputString) {
+  let breakString = inputString.split(" ");
+  return (breakString = breakString.map((words) =>
+    words.replaceAll(words[0], words[0].toUpperCase())
+  )).join("");
+}
+
+// console.log(removeSpaceCapitalizeString("my name is anash"));
+
+// 129 => Given an array of numbers, of any length, create a function which counts how many of those numbers pass the following criteria:
+// The first and last digits of a number must add to 10.
+
+function endsAddTo10(numbers) {
+  let count = 0;
+
+  for (let number of numbers) {
+    let numStr = absNumber.toString();
+    let absNumber = Math.abs(number);
+
+    if (numStr.length > 1) {
+      let firstDigit = parseInt(numStr[0]);
+      let lastDigit = parseInt(numStr[numStr.length - 1]);
+
+      if (firstDigit + lastDigit === 10) {
+        count++;
+      }
+    } else {
+      count++;
+    }
+  }
+  // return count;
+}
+
+// Example usage:
+// console.log(endsAddTo10([19, 46, 2098])); // Output: 3
+// console.log(endsAddTo10([33, 44, -55])); // Output: 1
+// console.log(endsAddTo10([])); // Output: 0
+
+// other approch
+
+function endsAddTo10(arr) {
+  return arr.reduce((count, current) => {
+    let absNumber = Math.abs(current);
+    const inString = absNumber.toString();
+
+    if (inString.length > 1) {
+      const firstNumber = parseInt(inString.charAt(0));
+      const secondNumber = parseInt(inString.slice(-1));
+
+      if (firstNumber + secondNumber === 10) {
+        count++;
+      }
+    }
+    // return count;
+  }, 0);
+}
+
+// console.log(endsAddTo10([19, 46, 2098])); // Output: 3
+// console.log(endsAddTo10([33, 44, -55])); // Output: 1
+// console.log(endsAddTo10([])); // Output: 0
+
+// other approch
+
+function endsAddTo10(arr) {
+  return arr.filter((digits) => {
+    const absNumber = Math.abs(digits).toString();
+
+    return (
+      absNumber.length === 1 ||
+      +absNumber[0] + +absNumber[absNumber.length - 1] === 10
+    );
+  }).length;
+}
+
+// console.log(endsAddTo10([19, 46, 2098])); // Output: 3
+// console.log(endsAddTo10([33, 44, -55])); // Output: 1
+// console.log(endsAddTo10([])); // Output: 0
+
+// 130 =>  Create a function that takes an array of integers and returns all pairs of integers that have a difference of two. The resulting array should be sorted in ascending order of values.
+
+function differenceTwo(arr) {
+  const storeTwoPair = [];
+  const sortedArr = arr.sort((a, b) => a - b);
+
+  for (let i = 0; i < sortedArr.length; i++) {
+    for (let j = i + 1; j < sortedArr.length; j++) {
+      if (sortedArr[j] - sortedArr[i] === 2) {
+        storeTwoPair.push([sortedArr[i], sortedArr[j]]);
+      }
+    }
+  }
+  return storeTwoPair;
+}
+
+// Examples
+console.log(differenceTwo([1, 2, 3, 4])); //  [[1, 3], [2, 4]]
+console.log(differenceTwo([1, 23, 3, 4, 7])); //  [[1, 3]]
+console.log(differenceTwo([4, 3, 1, 5, 6])); //  [[1, 3], [3, 5], [4, 6]
