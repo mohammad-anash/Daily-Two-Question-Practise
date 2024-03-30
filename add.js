@@ -452,10 +452,89 @@ function differenceTwo(arr) {
       }
     }
   }
-  return storeTwoPair;
+  // return storeTwoPair;
 }
 
 // Examples
-console.log(differenceTwo([1, 2, 3, 4])); //  [[1, 3], [2, 4]]
-console.log(differenceTwo([1, 23, 3, 4, 7])); //  [[1, 3]]
-console.log(differenceTwo([4, 3, 1, 5, 6])); //  [[1, 3], [3, 5], [4, 6]
+// console.log(differenceTwo([1, 2, 3, 4])); //  [[1, 3], [2, 4]]
+// console.log(differenceTwo([1, 23, 3, 4, 7])); //  [[1, 3]]
+// console.log(differenceTwo([4, 3, 1, 5, 6])); //  [[1, 3], [3, 5], [4, 6]
+
+// 131 => write a function counter one specific element
+
+function countChar(string, char) {
+  // return string
+  // .toLowerCase()
+  // .split("")
+  // .filter((letter) => letter === char).length;
+}
+
+// console.log(countChar("missIssIpi", "i"));
+
+// solve in other way
+
+function countChar(string, char) {
+  const charsCode = string
+    .toLowerCase()
+    .split("")
+    .map((chars) => chars.charCodeAt());
+  const letterCode = char.charCodeAt();
+
+  return charsCode.reduce((count, currentEle) => {
+    if (currentEle === letterCode) {
+      count++;
+    }
+    return count;
+  }, 0);
+}
+
+// console.log(countChar("missIssIpi", "i"));
+
+// 132 => write a function called checkTraingleType that taked three parameter represent the length of a side s traingle the function should return indication the type of traingle
+
+function checkTraingleType(a, b, c) {
+  if (a === b && b === c) return "traingle";
+  if (a === b || b === c || a === c) return "isosceles";
+  return "scalen";
+}
+
+// console.log(checkTraingleType(3, 3, 3));
+// console.log(checkTraingleType(5, 3, 5));
+// console.log(checkTraingleType(9, 8, 7));
+
+// 132 => Create a function that takes an array of integers as an argument and returns a unique number from that array. All numbers except unique ones have the same number of occurrences in the array.
+
+function findSingleNumber(arr) {
+  if (arr.length === 1) return arr;
+  // else return null;
+
+  const obj = {};
+
+  arr.forEach((element) => {
+    if (obj[element]) obj[element]++;
+    else obj[element] = 1;
+  });
+
+  for (const keys in obj) {
+    if (obj[keys] === 1) {
+      return +keys;
+    }
+  }
+  return null;
+}
+
+// console.log(findSingleNumber([2, 2, 2, 3, 4, 4, 4])); //  3
+// console.log(findSingleNumber([2])); //  2
+// console.log(findSingleNumber([])); //  nll
+// console.log(
+//   findSingleNumber([
+//     7, 13, 3, 6, 5, 4, 4, 13, 5, 3, 6, 7, 6, 5, 3, 13, 4, 7, 13, 5, 7, 4, 3, 6,
+//     8, 4, 3, 7, 5, 6, 13,
+//   ])
+// ); //  8
+// console.log(
+//   findSingleNumber([
+//     1, 2, 3, 6, 5, 4, 4, 2, 5, 3, 6, 1, 6, 5, 3, 2, 4, 1, 2, 5, 1, 4, 3, 6, 101,
+//     4, 3, 1, 5, 6, 2,
+//   ])
+// ); //  101
