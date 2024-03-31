@@ -538,3 +538,18 @@ function findSingleNumber(arr) {
 //     4, 3, 1, 5, 6, 2,
 //   ])
 // ); //  101
+
+// 133 => write a function sort an array of number inascending order
+
+function sortAnArray(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i + 1] > arr[i]) {
+      let temp = arr[i + 1];
+      arr[i + 1] = arr[i];
+      arr[i] = temp;
+    }
+  }
+  // return arr;
+}
+
+// console.log(sortAnArray([3, 2, 6, 9, 10]));

@@ -734,6 +734,7 @@ function SymmetricButterflyPattern() {
 // "*      *"
 // "*      *"
 // "********"
+
 function hollowRectanglePattern() {
   let newString = "";
 
