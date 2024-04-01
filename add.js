@@ -553,3 +553,120 @@ function sortAnArray(arr) {
 }
 
 // console.log(sortAnArray([3, 2, 6, 9, 10]));
+
+// 134 => Create a left rotation and a right rotation function that returns all the left rotations and right rotations of a string.
+
+// const leftRotations = (string) => {
+//   let rotateString = "";
+
+//   for (let i = 0; i < string.length; i++) {
+//     for (let j = 0; j < string.length; j++) {
+//       console.log(string.slice(0, j));
+//     }
+//   }
+//   return rotateString;
+// };
+
+// console.log(leftRotations("abc")); //  ["abc", "bca", "cab"]
+// // console.log(rightRotations("abc")); //  ["abc", "cab", "bca"]
+// console.log(leftRotations("abcdef")); //  ["abcdef", "bcdefa", "cdefab", "defabc", "efabcd", "fabcde"]
+// // console.log(rightRotations("abcdef")); //  ["abcdef", "fabcde", "efabcd", "defabc", "cdefab", "bcdefa"]
+
+// 135 => Create a function that takes a string and replaces the vowels with another character.
+
+// a = 1
+// e = 2
+// i = 3
+// o = 4
+// u = 5
+
+function replaceVowel(string) {
+  let updateString = "";
+  for (let i = 0; i < string.length; i++) {
+    if (string[i] === "a") {
+      updateString += string[i] = "1";
+    } else if (string[i] === "e") {
+      updateString += string[i] = "2";
+    } else if (string[i] === "i") {
+      updateString += string[i] = "3";
+    } else if (string[i] === "o") {
+      updateString += string[i] = "4";
+    } else if (string[i] === "u") {
+      updateString += string[i] = "5";
+    } else {
+      updateString += string[i];
+    }
+  }
+  // return updateString;
+}
+
+// console.log(replaceVowel("karachi")); //  "k1r1ch3"
+// console.log(replaceVowel("chembur")); //  "ch2mb5r"
+// console.log(replaceVowel("khandbari")); //  "kh1ndb1r3"
+
+// other approch
+
+function replaceVowel(string) {
+  string = string.toLowerCase();
+  string = string.replaceAll("a", "1");
+  string = string.replaceAll("e", "2");
+  string = string.replaceAll("i", "3");
+  string = string.replaceAll("o", "4");
+  string = string.replaceAll("u", "5");
+
+  return string;
+}
+
+// console.log(replaceVowel("karachi")); //  "k1r1ch3"
+// console.log(replaceVowel("chembur")); //  "ch2mb5r"
+// console.log(replaceVowel("khandbari")); //  "kh1ndb1r3"
+
+// one more to solve thise question
+
+// 135 => Create a function that takes a string and replaces the vowels with another character.
+
+// a = 1
+// e = 2
+// i = 3
+// o = 4
+// u = 5
+
+function replaceVowel(string) {
+  const vowelMap = {
+    a: "1",
+    e: "2",
+    i: "3",
+    o: "4",
+    u: "5",
+  };
+
+  let updateString = "";
+  for (const char of string) {
+    if (vowelMap[char]) {
+      updateString += vowelMap[char];
+    } else {
+      updateString += char;
+    }
+  }
+  return updateString;
+}
+
+// console.log(replaceVowel("karachi")); //  "k1r1ch3"
+// console.log(replaceVowel("chembur")); //  "ch2mb5r"
+// console.log(replaceVowel("khandbari")); //  "kh1ndb1r3"
+
+// 136 => Write a function that returns the position of the second occurrence of "zip" in a string, or -1 if it does not occur at least twice. Your code should be general enough to pass every possible case where "zip" can occur in a string.
+function findZip(string) {
+  let firstIndex = string.indexOf("zip");
+
+  let secondIndex = string.indexOf("zip", firstIndex + 1);
+
+  if (secondIndex !== -1) {
+    return secondIndex;
+  } else {
+    return -1;
+  }
+}
+
+// console.log(findZip("all zip files are zipped")); // 18
+// console.log(findZip("all zip files are compressed")); // -1
